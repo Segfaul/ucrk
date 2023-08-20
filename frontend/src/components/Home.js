@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const Home = () => {
+  useEffect(() => {
+    document.title = 'Главная страница | УЦРК';
+  }, []);
+
   const sliderData = [
     {
       id: 1,
@@ -106,6 +110,26 @@ const Home = () => {
       category: 'News',
       link: 'ссылка5'
     },
+  ];
+
+  const MediaData = [
+    /* media-types: vk / telegram / twitter / instagram (find on font-awesome) */
+    {
+      media: "twitter",
+      post: "https://twitter.com",
+      date: "Aug 18, 2023",
+      title: '@gasprom Большое спасибо. Мы очень ценим Вашу поддержку и хотели бы установить долгосрочные отношения.',
+      category: 'News',
+      link: 'ссылка1'
+    },
+    {
+      media: "telegram",
+      post: "https://t.me/",
+      date: "Aug 6, 2023",
+      title: 'Рады представить наших новых партнеров...',
+      category: 'News',
+      link: 'ссылка1'
+    }
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
@@ -227,17 +251,21 @@ const Home = () => {
           <div className='home-media-recent'>
             <h3 className='home-media-title'>Ключевые события</h3>
             <ul>
-              <li className='home-media-recent-element'>
-                <div className='home-media-recent-element-title'>
-                  <i></i>
-                  <h4>@elliot</h4>
-                </div>
-                <div className='home-media-recent-element-footer'>
-                  <div className='home-media-recent-element-footer-tag'></div>
-                  <div className='home-media-recent-element-footer-date'>Aug 18, 2023</div>
-                  <a className='home-media-recent-element-footer-link'><i /></a>
-                </div>
-              </li>
+              {MediaData.map((post, index) => (
+                <li className='home-media-recent-element'>
+                  <div className='home-media-recent-element-title'>
+                    <i className={'fab fa-' + post.media}></i>
+                    <h4>{post.title}</h4>
+                  </div>
+                  <div className='home-media-recent-element-footer'>
+                    <div className='home-media-recent-element-footer-description'>
+                      <a href={post.link} className='home-media-recent-element-footer-tag'>{post.category}</a>
+                      <div className='home-media-recent-element-footer-date'>{post.date}</div>
+                    </div>
+                    <a href={post.post} className='home-media-recent-element-footer-link'><i className='fa fa-link'></i></a>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
