@@ -85,14 +85,10 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
         </div>
       </div>
     );
-  } else if (activeMenuItem === 'Контакты') {
-    additionalContent = <p>Контакты</p>;
-  } else if (activeMenuItem === 'Медиа-центр') {
-    additionalContent = <p>Медиа</p>;
   }
 
   return (
-    <div className={`additional-block ${additionalBlockVisible ? 'block-hovered' : ''}`}>
+    <div className={`additional-block ${additionalBlockVisible && additionalContent ? 'block-hovered' : ''}`}>
       {additionalContent}
     </div>
   );

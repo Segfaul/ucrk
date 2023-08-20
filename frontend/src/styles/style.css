@@ -656,3 +656,45 @@ footer{
 .home-media-recent-element-footer-date {
   margin-left: 1vw;
 }
+
+.home-media-recent-element-footer-link {
+  text-decoration: none;
+  color: #1740f7;
+  transition: color 0.3s ease;
+}
+
+.home-media-recent-element-footer-link:hover {
+  color: #e63e0b;
+  transition: color 0.3s ease;
+}
+
+/* contact page styles */
+
+.contact-info {
+  padding-top: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.contact-info-description {
+  margin-right: 10vw;
+}
+
+.contact-info-description-data {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #8d8d8d;
+}
+
+.contact-info-description-data div,
+.contact-info-description-data div a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.contact-info-description-data div a i {
+  margin-right: 0.5vw;
+}
