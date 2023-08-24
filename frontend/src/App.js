@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Contact from './components/Contact'
 import PageNotFound from './components/Error/PageNotFound'
-import Loader from './components/config/Loader'
 
 const App = () => {
   return (
