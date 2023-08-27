@@ -86,6 +86,10 @@ body {
   position: fixed;
 }
 
+.header.active .additional-block {
+  background-color: #000000c5;
+}
+
 .logo-pic {
   max-width: 100px;
   height: auto;
@@ -136,7 +140,7 @@ main {
   position: absolute;
   top: 100%;
   left: 0;
-  margin-left: calc(49.5% - 50vw);
+  margin-left: calc(49.9% - 50vw);
   width: 100vw;
   min-height: 40vh;
   background-color: #0000006b;
@@ -147,10 +151,6 @@ main {
   pointer-events: none;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease, background 0.5s;
-}
-
-.additional-block.active {
-  background-color: #000000c5;
 }
 
 .block-hovered {
@@ -182,7 +182,7 @@ main {
 .submenu {
   margin: 2vh 10vw 2vh 18vw;
   border-radius: 10px;
-  padding: 20px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: column;
   align-items: first baseline;
@@ -251,6 +251,7 @@ main {
 
 footer{
   flex-shrink: 1;
+  margin-top: 2.5vh;
 }
 
 .footer {
@@ -759,4 +760,125 @@ footer{
 
 .contact-info-description-data div a i {
   margin-right: 0.5vw;
+}
+
+
+/* uchebni-center page styles */
+
+.uchebni-direction-header {
+  background-size: cover !important;
+  cursor: default;
+  background-position: 50%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  position: relative; /* Добавляем это для позиционирования псевдоэлемента */
+}
+
+.uchebni-direction-header::before {
+  content: "";
+  background-color: rgba(128, 128, 128, 0.5); /* Серый цвет с прозрачностью */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.uchebni-direction-header-content {
+  color: #fff;
+  display: flex;
+  align-items: first baseline;
+  justify-content: space-around;
+  margin: 26vh 0vw 15vh 10vw;
+  z-index: 0;
+}
+
+.uchebni-direction-header-content h2 {
+  font-size: 3rem;
+}
+
+.uchebni-direction-header-content p {
+  font-size: 1.5rem;
+  margin-left: 20vw;
+  max-width: 30vw;
+}
+
+.uchebni-direction-cards {
+  display: flex;
+  margin: 0vh 21vw;
+  margin-top: 5vh !important;
+  flex-wrap: wrap;
+  gap: 20px 20px;
+}
+
+.uchebni-direction-card {
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.uchebni-direction-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.uchebni-direction-card img {
+  max-height: 20vh;
+}
+
+.uchebni-direction-card h3 {
+  margin-bottom: 2vh;
+  max-width: 12.5vw;
+  flex: 1;
+}
+
+.more-button {
+  background-color: #0051ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.uchebni-direction-card-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.uchebni-direction-card-popup-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

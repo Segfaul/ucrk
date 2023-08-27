@@ -13,8 +13,36 @@ const MenuItem = ({ to, item, isActive, onMouseEnter, onClick }) => {
   );
 };
 
-const AdditionalBlock = ({ isHeaderActive, activeMenuItem, additionalBlockVisible }) => {
+const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
   let additionalContent;
+
+  const SubmenuItem = ({ text, link, icon }) => (
+    <li className="submenu-item">
+      <a className="submenu-link" href={link}>
+        {icon && <img className="submenu-icon" src={require('../assets/' + icon)} alt="icon" />}
+        {text}
+      </a>
+    </li>
+  );
+  
+  const SubmenuList = ({ items, isParent }) => (
+    <ul className={`submenu-nav ${isParent ? 'parent' : ''}`}>
+      {items.map(item => (
+        <SubmenuItem key={item.text} text={item.text} link={item.link} icon={item.icon} />
+      ))}
+    </ul>
+  );
+  
+  const Submenu = ({ header, sections }) => (
+    <div className="submenu">
+      <div className="submenu-header">{header}</div>
+      <div className='submenu-nav-list'>
+        {sections.map((section, index) => (
+          <SubmenuList key={index} items={section.items} isParent={section.isParent} />
+        ))}
+      </div>
+    </div>
+  );
 
   if (activeMenuItem === 'Item 1') {
     additionalContent = (
@@ -23,97 +51,108 @@ const AdditionalBlock = ({ isHeaderActive, activeMenuItem, additionalBlockVisibl
 
   } else if (activeMenuItem === 'О компании') {
     additionalContent = (
-      <div className="submenu">
-        <div className="submenu-header">О компании</div>
-        <div className='submenu-nav-list'>
-          <ul className="submenu-nav parent">
-            <li className="submenu-item">
-              <Link className="submenu-link" href="/about">Сведения об образовательной организации &rarr;
-              </Link>
-            </li>
-          </ul>
-          <ul className='submenu-nav'>
-            <li className="submenu-item"><a className="submenu-link" href="#">Структура и органы управления организации</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Документ</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Образование</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Образовательные стандарты</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Руководство</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Платные образовательные услуги</a></li>
-          </ul>
-          <ul className='submenu-nav'>
-            <li className="submenu-item"><a className="submenu-link" href="#">Финансово-хозяйственная деятельность</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Материально-техническое обеспечение</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Стипендии</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Международное сотрудничество</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Доступная среда</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Профилактика экстремизма</a></li>
-          </ul>
-        </div>
-      </div>
+      <Submenu
+        header="О компании"
+        sections={[
+          {
+            items: [
+              { text: "Сведения об образовательной организации →", link: "/about" }
+            ],
+            isParent: true
+          },
+          {
+            items: [
+              { text: "Структура и органы управления организации", link: "#" },
+              { text: "Документ", link: "#" },
+              { text: "Образование", link: "#" },
+              { text: "Образовательные стандарты", link: "#" },
+              { text: "Руководство", link: "#" },
+              { text: "Платные образовательные услуги", link: "#" }
+            ]
+          },
+          {
+            items: [
+              { text: "Финансово-хозяйственная деятельность", link: "#" },
+              { text: "Материально-техническое обеспечение", link: "#" },
+              { text: "Стипендии", link: "#" },
+              { text: "Международное сотрудничество", link: "#" },
+              { text: "Доступная среда", link: "#" },
+              { text: "Профилактика экстремизма", link: "#" }
+            ]
+          }
+        ]}
+      />
     );
   } else if (activeMenuItem === 'Учебный центр') {
     additionalContent = (
-      <div className="submenu">
-        <div className="submenu-header">Учебный центр</div>
-        <div className='submenu-nav-list'>
-          <ul className="submenu-nav parent">
-            <li className="submenu-item">
-              <Link className="submenu-link" href="#">Доступные образовательные программы &rarr;
-              </Link>
-            </li>
-          </ul>
-          <ul className='submenu-nav'>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Охрана труда</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/globe.png')}></img>Пожарная безопасность</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Промышленная безопасность</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/globe.png')}></img>Профессиональная переподготовка</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>ПТЭТЭ и эксплуатация тепловых энергоустановок</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Работы на высоте</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/globe.png')}></img>Рабочие профессии</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Электробезопасность</a></li>
-          </ul>
-          <ul className='submenu-nav'>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Земляные работы</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/globe.png')}></img>Гражданская оборона</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Оказание первой помощи</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Земляные работы</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/globe.png')}></img>Производственный контроль</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/globe.png')}></img>Радиацонная безопасность</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Повышение квалификации</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#"><img className="submenu-icon" src={require('../assets/home/factory.png')}></img>Повышение квалификации в проектировании</a></li>
-          </ul>
-        </div>
-      </div>
+      <Submenu
+        header="Учебный центр"
+        sections={[
+          {
+            items: [
+              { text: "Доступные образовательные программы →", link: "/uchebni-centr" }
+            ],
+            isParent: true
+          },
+          {
+            items: [
+              { text: "Охрана труда", link: "/uchebni-center/ohrana-truda", icon: "uchebni_center/labour_protection.png"},
+              { text: "Пожарная безопасность", link: "#", icon: "uchebni_center/flame_security.png" },
+              { text: "Промышленная безопасность", link: "#", icon: "uchebni_center/industrial_safety.png" },
+              { text: "Профессиональная переподготовка", link: "#", icon: "uchebni_center/retraining.png" },
+              { text: "ПТЭТЭ и эксплуатация тепловых энергоустановок", link: "#", icon: "uchebni_center/heat_power_plant.png" },
+              { text: "Работы на высоте", link: "#", icon: "uchebni_center/heigh_works.png" },
+              { text: "Рабочие профессии", link: "#", icon: "uchebni_center/workers.png" },
+              { text: "Электробезопасность", link: "#", icon: "uchebni_center/electricial_power.png" }
+            ]
+          },
+          {
+            items: [
+              { text: "Земляные работы", link: "#", icon: "uchebni_center/ground_works.png" },
+              { text: "Гражданская оборона", link: "#", icon: "uchebni_center/civil_defense.png" },
+              { text: "Оказание первой помощи", link: "#", icon: "uchebni_center/first_aid.png" },
+              { text: "Производственный контроль", link: "#", icon: "uchebni_center/production_control.png" },
+              { text: "Радиационная безопасность", link: "#", icon: "uchebni_center/radiation_safety.png" },
+              { text: "Повышение квалификации", link: "#", icon: "uchebni_center/advanced_training.png" },
+              { text: "Повышение квалификации в проектировании", link: "#", icon: "uchebni_center/architec.png" }
+            ]
+          }
+        ]}
+      />
     );
   } else if (activeMenuItem === 'Услуги') {
     additionalContent = (
-      <div className="submenu">
-        <div className="submenu-header">Услуги</div>
-        <div className='submenu-nav-list'>
-          <ul className="submenu-nav parent">
-            <li className="submenu-item">
-              <Link className="submenu-link" href="#">Комплекс предоставляемых услуг &rarr;
-              </Link>
-            </li>
-          </ul>
-          <ul className='submenu-nav'>
-            <li className="submenu-item"><a className="submenu-link" href="#">Учебный центр</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Аутсорсинг по охране труда</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Повышение квалификации</a></li>
-          </ul>
-          <ul className='submenu-nav'>
-            <li className="submenu-item"><a className="submenu-link" href="#">Лицензирование</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Сертификация</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Вступление в СРО</a></li>
-            <li className="submenu-item"><a className="submenu-link" href="#">Соут</a></li>
-          </ul>
-        </div>
-      </div>
+      <Submenu
+        header="Услуги"
+        sections={[
+          {
+            items: [
+              { text: "Комплекс предоставляемых услуг →", link: "/uslugi" }
+            ],
+            isParent: true
+          },
+          {
+            items: [
+              { text: "Учебный центр", link: "#" },
+              { text: "Аутсорсинг по охране труда", link: "#" },
+              { text: "Повышение квалификации", link: "#" },
+            ]
+          },
+          {
+            items: [
+              { text: "Лицензирование", link: "#" },
+              { text: "Сертификация", link: "#" },
+              { text: "Вступление в СРО", link: "#" },
+              { text: "Соут", link: "#" }
+            ]
+          }
+        ]}
+      />
     );
   }
 
   return (
-    <div className={`additional-block ${additionalBlockVisible && additionalContent ? 'block-hovered' : ''} ${isHeaderActive ? 'active' : ''}`}>
+    <div className={`additional-block ${additionalBlockVisible && additionalContent ? 'block-hovered' : ''}`}>
       {additionalContent}
     </div>
   );
@@ -123,9 +162,10 @@ const Header = () => {
 
   const menuItems = [
     { to: '/about', label: 'О компании' },
-    { to: '/uchebni-centr', label: 'Учебный центр' },    
+    { to: '/uchebni-center', label: 'Учебный центр' },    
     { to: '/uslugi', label: 'Услуги' },
     { to: '/contacts', label: 'Контакты' },
+    { to: '/career', label: 'Карьера' },
     { to: '/media', label: 'Медиа-центр' }
   ];
 
@@ -149,11 +189,19 @@ const Header = () => {
   }, []);
 
   const handleMenuItemHover = (menuItem) => {
-    setActiveMenuItem(menuItem);
-    setTimeout(() => {
-      setAdditionalBlockVisible(true);
-      document.querySelector('main').classList.add('blurred');
-    }, 100);
+    if (activeMenuItem) {
+      setAdditionalBlockVisible(false);
+      setTimeout(() => {
+        setActiveMenuItem(menuItem);
+        setAdditionalBlockVisible(true);
+      }, 200);
+    } else {
+      setActiveMenuItem(menuItem);
+      setTimeout(() => {
+        setAdditionalBlockVisible(true);
+        document.querySelector('main').classList.add('blurred');
+      }, 100);
+    }
   };
 
   const handleMenuLeave = () => {
@@ -186,7 +234,7 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-        <AdditionalBlock isHeaderActive={isHeaderActive} activeMenuItem={activeMenuItem} additionalBlockVisible={additionalBlockVisible} />
+        <AdditionalBlock activeMenuItem={activeMenuItem} additionalBlockVisible={additionalBlockVisible} />
       </div>
       <div class="media">
         <Link to="/" className='sdo-link'>
