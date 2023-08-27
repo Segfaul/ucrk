@@ -8,7 +8,9 @@ const directionsData = [
     imageUrl: 'ohrana-tryda/e-learning-pic.jpg', 
     subdirections: [
       { 
-        title: 'Оказание первой помощи', period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        title: 'Оказание первой помощи', 
+        period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        price: '2 800 ₽',
         imageUrl: 'ohrana-tryda/learning-card.jpg',
         description: `Данный курс направлен на получение работниками знаний, 
         умений и навыков, позволяющих оказывать первую помощь до оказания медицинской помощи работникам при несчастных случаях 
@@ -21,7 +23,9 @@ const directionsData = [
         ]
       },
       { 
-        title: 'Использование (применение) средств индивидуальной защиты (СИЗ)', period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        title: 'Использование (применение) средств индивидуальной защиты (СИЗ)', 
+        period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        price: '2 800 ₽',
         imageUrl: 'ohrana-tryda/learning-card.jpg',
         description: `Это направление обучения ориентировано на то, чтобы обеспечить студентов знаниями, 
         необходимыми для обеспечения личной безопасности и здоровья в различных рабочих ситуациях. `,
@@ -33,7 +37,9 @@ const directionsData = [
         ]
       },
       { 
-        title: 'Оказание первой помощи', period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        title: 'Общие вопросы охраны труда и функционирования системы управления охраной труда', 
+        period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        price: '2 800 ₽',
         imageUrl: 'ohrana-tryda/learning-card.jpg',
         description: `Данный курс направлен на получение работниками знаний, 
         умений и навыков, позволяющих оказывать первую помощь до оказания медицинской помощи работникам при несчастных случаях 
@@ -46,7 +52,10 @@ const directionsData = [
         ]
       },
       { 
-        title: 'Оказание первой помощи', period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        title: `Безопасные методы и приемы выполнения работ при воздействии вредных и (или) опасных производственных факторов, 
+        источников опасности, идентифицированных в рамках специальной оценки условий труда и оценки профессиональных рисков`, 
+        period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        price: '2 800 ₽',
         imageUrl: 'ohrana-tryda/learning-card.jpg',
         description: `Данный курс направлен на получение работниками знаний, 
         умений и навыков, позволяющих оказывать первую помощь до оказания медицинской помощи работникам при несчастных случаях 
@@ -57,7 +66,23 @@ const directionsData = [
           {title: "Оказание первой помощи при наружных кровотечениях и травмах."},
           {title: "Оказание первой помощи при прочих состояниях."},
         ]
-      },  
+      },
+      { 
+        title: `Безопасные методы и приемы выполнения работ повышенной опасности, к которым предъявляются дополнительные требования 
+        в соответствии с нормативными правовыми актами, содержащими государственные нормативные требования охраны труда`, 
+        period: '8', whom: 'Рабочие, руководители, и специалисты', link:'',
+        price: '2 800 ₽',
+        imageUrl: 'ohrana-tryda/learning-card.jpg',
+        description: `Данный курс направлен на получение работниками знаний, 
+        умений и навыков, позволяющих оказывать первую помощь до оказания медицинской помощи работникам при несчастных случаях 
+        на производстве, травмах, отравлениях и других состояниях и заболеваниях, угрожающих их жизни и здоровью.`,
+        points: [
+          {title: "Организационно-правовые аспекты оказания первой помощи."},
+          {title: "Оказание первой помощи при отсутствии сознания, остановке дыхания и кровообращения."},
+          {title: "Оказание первой помощи при наружных кровотечениях и травмах."},
+          {title: "Оказание первой помощи при прочих состояниях."},
+        ]
+      },
     ]
   },
   { path: 'pozharnaya-bezopasnost', title: 'Пожарная безопасность' },
@@ -109,7 +134,7 @@ const DirectionPage = ({ direction }) => {
             >
               <img src={require('../assets/uchebni_center/' + subdirection.imageUrl)} alt='pic' />
               <h3>{subdirection.title}</h3>
-              <h4>4 000 ₽</h4>
+              <h4>{subdirection.price}</h4>
               <button className="more-button">Подробнее</button>
             </div>
           ))}
@@ -117,8 +142,42 @@ const DirectionPage = ({ direction }) => {
           {showPopup && (
             <div className="uchebni-direction-card-popup" onClick={handleDocumentClick}>
               <div className="uchebni-direction-card-popup-content" ref={popupRef}>
-                <h3>{selectedDirection.title}</h3>
-                <p>{selectedDirection.description}</p>
+                <div className='uchebni-direction-card-popup-content-header'>
+                  <img src={require('../assets/uchebni_center/' + selectedDirection.imageUrl)} alt='pic' />
+                  <div className='uchebni-direction-card-popup-content-header-description'>
+                    <h3>{selectedDirection.title}</h3>
+                    <h4>{selectedDirection.price}</h4>
+                    <button className="training-button">Пройти обучение</button>
+                    <div className='uchebni-direction-card-popup-content-header-params'>
+                      <div>
+                        <img src={require('../assets/uchebni_center/time.png')} alt='pic' />
+                        <h5>{selectedDirection.period} ч.</h5>
+                      </div>
+                      <div>
+                        <img src={require('../assets/uchebni_center/ground_works.png')} alt='pic' />
+                        <h5>{selectedDirection.whom}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='uchebni-direction-card-popup-content-description'>
+                  <div className='uchebni-direction-card-popup-content-description-points'>
+                    <h5>В рамках данной программы обучения специалист проходит все необходимые темы, такие как:</h5>
+                    <ul>
+                      {selectedDirection.points.map((point) => (
+                        <li>{point.title}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className='uchebni-direction-card-popup-content-description-postfix'>
+                    <h5>{selectedDirection.description}</h5>
+                    <h5 className='postfix-base'>
+                      Для завершения обучения специалист проходит Итоговый тест. <br />
+                      Чтобы успешно сдать тест, необходимо правильно ответить на 7 вопросов из 10. <br /> <br />
+                      После успешного прохождения теста специалисту выдается протокол проверки знаний, а специалист заносится в реестр Минтруда.
+                    </h5>
+                  </div>
+                </div>
               </div>
             </div>
           )}
