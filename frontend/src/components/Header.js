@@ -90,31 +90,31 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
         sections={[
           {
             items: [
-              { text: "Доступные образовательные программы →", link: "/uchebni-centr" }
+              { text: "Доступные образовательные программы →", link: "/uchebni-center" }
             ],
             isParent: true
           },
           {
             items: [
               { text: "Охрана труда", link: "/uchebni-center/ohrana-truda", icon: "uchebni_center/labour_protection.png"},
-              { text: "Пожарная безопасность", link: "#", icon: "uchebni_center/flame_security.png" },
-              { text: "Промышленная безопасность", link: "#", icon: "uchebni_center/industrial_safety.png" },
+              { text: "Пожарная безопасность", link: "/uchebni-center/pozharnaya-bezopasnost", icon: "uchebni_center/flame_security.png" },
+              { text: "Промышленная безопасность", link: "/uchebni-center/promyshlennaya-bezopasnost", icon: "uchebni_center/industrial_safety.png" },
               { text: "Профессиональная переподготовка", link: "#", icon: "uchebni_center/retraining.png" },
-              { text: "ПТЭТЭ и эксплуатация тепловых энергоустановок", link: "#", icon: "uchebni_center/heat_power_plant.png" },
-              { text: "Работы на высоте", link: "#", icon: "uchebni_center/heigh_works.png" },
-              { text: "Рабочие профессии", link: "#", icon: "uchebni_center/workers.png" },
-              { text: "Электробезопасность", link: "#", icon: "uchebni_center/electricial_power.png" }
+              { text: "ПТЭТЭ и эксплуатация тепловых энергоустановок", link: "/uchebni-center/ptete-i-ekspluatacziya-teplovyh-energo", icon: "uchebni_center/heat_power_plant.png" },
+              { text: "Работы на высоте", link: "/uchebni-center/raboty-na-vysote", icon: "uchebni_center/heigh_works.png" },
+              { text: "Рабочие профессии", link: "/uchebni-center/rabochie-professii", icon: "uchebni_center/workers.png" },
+              { text: "Электробезопасность", link: "/uchebni-center/elektrobezopasnost", icon: "uchebni_center/electricial_power.png" }
             ]
           },
           {
             items: [
-              { text: "Земляные работы", link: "#", icon: "uchebni_center/ground_works.png" },
-              { text: "Гражданская оборона", link: "#", icon: "uchebni_center/civil_defense.png" },
-              { text: "Оказание первой помощи", link: "#", icon: "uchebni_center/first_aid.png" },
-              { text: "Производственный контроль", link: "#", icon: "uchebni_center/production_control.png" },
-              { text: "Радиационная безопасность", link: "#", icon: "uchebni_center/radiation_safety.png" },
-              { text: "Повышение квалификации", link: "#", icon: "uchebni_center/advanced_training.png" },
-              { text: "Повышение квалификации в проектировании", link: "#", icon: "uchebni_center/architec.png" }
+              { text: "Земляные работы", link: "/uchebni-center/zemlyanye-raboty", icon: "uchebni_center/ground_works.png" },
+              { text: "Гражданская оборона", link: "/uchebni-center/grazhdanskaya-oborona", icon: "uchebni_center/civil_defense.png" },
+              { text: "Оказание первой помощи", link: "/uchebni-center/okazanie-pervoj-pomoshhi", icon: "uchebni_center/first_aid.png" },
+              { text: "Производственный контроль", link: "/uchebni-center/proizvodstvennyj-kontrol", icon: "uchebni_center/production_control.png" },
+              { text: "Радиационная безопасность", link: "/uchebni-center/radiaczionnaya-bezopasnost", icon: "uchebni_center/radiation_safety.png" },
+              { text: "Повышение квалификации", link: "/uchebni-center/povyshenie-kvalifikaczii-v-stroitelstve", icon: "uchebni_center/advanced_training.png" },
+              { text: "Повышение квалификации в проектировании", link: "/uchebni-center/povyshenie-kvalifikaczii-v-proektirovanii", icon: "uchebni_center/architec.png" }
             ]
           }
         ]}
