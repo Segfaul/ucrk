@@ -1031,6 +1031,20 @@ footer{
   transform: translateY(-4px);
 }
 
+.study-plan {
+  text-align: center;
+  min-height: 4vh;
+  background-color: #e2e1e1 !important;
+}
+.study-plan a {
+  display: block;
+  width: 100%;
+  height: 75%;
+  text-decoration: none;
+  color: black;
+  padding-top: 10px;
+}
+
 .postfix-base {
   border-top: 1px solid black;
   padding-top: 6px;
