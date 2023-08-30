@@ -99,7 +99,7 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
               { text: "Охрана труда", link: "/uchebni-center/ohrana-truda", icon: "uchebni_center/labour_protection.png"},
               { text: "Пожарная безопасность", link: "/uchebni-center/pozharnaya-bezopasnost", icon: "uchebni_center/flame_security.png" },
               { text: "Промышленная безопасность", link: "/uchebni-center/promyshlennaya-bezopasnost", icon: "uchebni_center/industrial_safety.png" },
-              { text: "Профессиональная переподготовка", link: "#", icon: "uchebni_center/retraining.png" },
+              { text: "Профессиональная переподготовка", link: "/uchebni-center/professionalnaya-perepodgotovka", icon: "uchebni_center/retraining.png" },
               { text: "ПТЭТЭ и эксплуатация тепловых энергоустановок", link: "/uchebni-center/ptete-i-ekspluatacziya-teplovyh-energo", icon: "uchebni_center/heat_power_plant.png" },
               { text: "Работы на высоте", link: "/uchebni-center/raboty-na-vysote", icon: "uchebni_center/heigh_works.png" },
               { text: "Рабочие профессии", link: "/uchebni-center/rabochie-professii", icon: "uchebni_center/workers.png" },
@@ -113,7 +113,7 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
               { text: "Оказание первой помощи", link: "/uchebni-center/okazanie-pervoj-pomoshhi", icon: "uchebni_center/first_aid.png" },
               { text: "Производственный контроль", link: "/uchebni-center/proizvodstvennyj-kontrol", icon: "uchebni_center/production_control.png" },
               { text: "Радиационная безопасность", link: "/uchebni-center/radiaczionnaya-bezopasnost", icon: "uchebni_center/radiation_safety.png" },
-              { text: "Повышение квалификации", link: "/uchebni-center/povyshenie-kvalifikaczii-v-stroitelstve", icon: "uchebni_center/advanced_training.png" },
+              { text: "Повышение квалификации в строительстве", link: "/uchebni-center/povyshenie-kvalifikaczii-v-stroitelstve", icon: "uchebni_center/advanced_training.png" },
               { text: "Повышение квалификации в проектировании", link: "/uchebni-center/povyshenie-kvalifikaczii-v-proektirovanii", icon: "uchebni_center/architec.png" }
             ]
           }
@@ -133,7 +133,7 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
           },
           {
             items: [
-              { text: "Учебный центр", link: "#" },
+              { text: "Учебный центр", link: "/uchebni-center" },
               { text: "Аутсорсинг по охране труда", link: "#" },
               { text: "Повышение квалификации", link: "#" },
             ]
