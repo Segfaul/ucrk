@@ -1518,6 +1518,14 @@ const directionsData = [
   },
 ];
 
+const truncateWithEllipsis = (text, maxLength) => {
+  if (text.length <= maxLength) {
+    return text;
+  }
+
+  return text.substring(0, maxLength) + '...';
+};
+
 const DirectionPage = ({ direction }) => {
 
   useEffect(() => {
@@ -1545,14 +1553,6 @@ const DirectionPage = ({ direction }) => {
     if (showPopup && !popupRef.current.contains(event.target)) {
       closePopup();
     }
-  };
-
-  const truncateWithEllipsis = (text, maxLength) => {
-    if (text.length <= maxLength) {
-      return text;
-    }
-  
-    return text.substring(0, maxLength) + '...';
   };
 
   return (
@@ -1592,7 +1592,7 @@ const DirectionPage = ({ direction }) => {
                         <h5>{selectedDirection.period} ч.</h5>
                       </div>
                       <div>
-                        <img src={require('../assets/uchebni_center/ground_works.png')} alt='pic' />
+                        <img src={require('../assets/uchebni_center/zemlyanye-raboty.png')} alt='pic' />
                         <h5>{selectedDirection.whom}</h5>
                       </div>
                     </div>
@@ -1638,15 +1638,59 @@ const UchebniCenter = () => {
     }, []);
 
     return (
-        <div>
-          <h1>Страница Учебного центра</h1>
-          <ul>
-            {directionsData.map((direction) => (
-              <li key={direction.path}>
-                <Link to={`${direction.path}`}>{direction.title}</Link>
-              </li>
-            ))}
-          </ul>
+        <div className='uchebni'>
+          <div className='uchebni-header uchebni-direction-header' style={{ backgroundImage: `url(${require('../assets/uchebni_center/logo.webp')})`}}>
+            <div className='uchebni-header-content uchebni-direction-header-content'>
+              <h2>Учебный центр</h2>
+            </div>
+          </div>
+          <div className='page-content'>
+            <section className='uchebni-welcome'>
+              <h3>Об Учебном центре</h3>
+              <p>
+                ООО «Учебный центр  развития квалификации» предоставляет услуги в области дополнительного профессионального образования 
+                (послевузовское образование). Учебные занятия проводят высококвалифицированные преподаватели. Занятия могут быть 
+                организованы несколькими способами:
+              </p>
+              <ul className='uchebni-welcome-options'>
+                <li className='uchebni-welcome-option'>
+                  <img src={require('../assets/uchebni_center/learning.png')} alt="learning"/>
+                  <span>В оборудованных классах</span>
+                </li>
+                <li className='uchebni-welcome-option'>
+                  <img src={require('../assets/uchebni_center/remote-learn.png')} alt="learning"/>
+                  <span>Дистанционно на платформе СДО</span>
+                </li>
+                <li className='uchebni-welcome-option'>
+                  <img src={require('../assets/uchebni_center/outdoors_learn.png')} alt="learning"/>
+                  <span>С выездом в Вашу организацию</span>
+                </li>
+              </ul>
+              <p>
+                Мы обучаем требованием охраны труда, правилам выполнения работ на высоте, правилам оказания первой помощи, экологии, промышленной безопасности, электробезопасности, энергетической безопасности, ГО и ЧС и другие.
+                <br /><br />
+                Наш Учебный Центр проводит повышение квалификации специалистов, задействованных во всех отраслях промышленности, в том числе и на особо опасных объектах. Мы ежедневно обучаем специалистов по программам дополнительного профессионального образования. В нашем Учебном Центре проводится обучение более чем по 100 программам профессионального обучения по рабочим профессиям.
+                <br /><br />
+                Мы организовываем полный цикл обучения исходя из Ваших предпочтений, учитываем все пожелания и подходим индивидуально к каждому клиенту.
+                <br /><br />
+                Образовательная деятельность осуществляется на основании выданной образовательной лицензии Департаментом образования и науки г. Москвы и внесена в реестр лицензий под номером Л035-01298-77/00624784.
+              </p>
+            </section>
+            <section className='uchebni-programs'>
+              <h3>Наши образовательные программы</h3>
+              <ul className='uchebni-program-list'>
+                {directionsData.map((direction) => (
+                  <li className='uchebni-program' key={direction.path}>
+                    <Link to={`${direction.path}`}>
+                      <img src={require('../assets/uchebni_center/' + direction.path + '.png')} alt='pic' />
+                      <h4>{truncateWithEllipsis(direction.title, 25)}</h4>
+                      <button className="more-button">Подробнее</button>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
         </div>
     );
 };
