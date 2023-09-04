@@ -1683,7 +1683,7 @@ const UchebniCenter = () => {
                   <li className='uchebni-program' key={direction.path}>
                     <Link to={`${direction.path}`}>
                       <img src={require('../assets/uchebni_center/' + direction.path + '.png')} alt='pic' />
-                      <h4>{truncateWithEllipsis(direction.title, 25)}</h4>
+                      <h4>{direction.title}</h4>
                       <button className="more-button">Подробнее</button>
                     </Link>
                   </li>

@@ -5,11 +5,15 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Contact from './components/Contact'
 import UchebniCenter, { DirectionPage, directionsData } from './components/Uchebni_center'
-import PageNotFound from './components/Error/PageNotFound'
+import Uslugi, { UslugiPage, UslugiData } from './components/Uslugi';
+import PageNotFound from './components/Error/PageNotFound';
+import ScrollToTop from './components/config/Scroll';
 
 const App = () => {
+
   return (
     <Router>
+        <ScrollToTop />
         <Header />
         <main>
           <Routes>
@@ -23,6 +27,18 @@ const App = () => {
                   path={`${direction.path}`}
                   element={<DirectionPage direction={direction} />}
                 />
+              ))}
+            </Route>
+            <Route path="/uslugi">
+              <Route index element={<Uslugi />} />
+              {UslugiData.map((usluga) => (
+                usluga.subtitle ? (
+                  <Route
+                    key={usluga.path}
+                    path={`${usluga.path}`}
+                    element={<UslugiPage direction={usluga} />}
+                  />
+                ) : null
               ))}
             </Route>
             <Route path="*" element={<PageNotFound />} />
