@@ -32,7 +32,7 @@ const App = () => {
             <Route path="/uslugi">
               <Route index element={<Uslugi />} />
               {UslugiData.map((usluga) => (
-                usluga.subtitle ? (
+                usluga.imageUrl ? (
                   <Route
                     key={usluga.path}
                     path={`${usluga.path}`}
