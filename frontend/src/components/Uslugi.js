@@ -5,7 +5,7 @@ const UslugiData = [
   { path: 'uchebni-center', title: 'Учебный центр', 
   },
   { path: 'autsorsing-po-ohrane-truda', title: 'Аутсорсинг по охране труда', 
-    imageUrl: 'autsorsing-po-ohrane-truda/logo.webp', 
+    imageUrl: 'logo.webp', 
     subtext: `Предлагаем услуги по реализации всех функций специалиста ОТ на предприятиях со штатной численностью до 
     50 работников, независимо от вида деятельности, и отдельные организационно-методические мероприятия, предусмотренные СУОТ.`, 
     subtable1: { 
@@ -29,6 +29,61 @@ const UslugiData = [
         },
         {
           title: `Сопровождение проверок Минтруда с целью недопущения штрафных санкций.`,
+          imageUrl: `right-arrow.png`,
+        },
+      ], 
+    },
+    subtext1: `Для расчета ориентировочной договорной стоимости аутсорсинга используются примерные цены, учитывающие численность 
+    штата и характер деятельности компании.`,
+    subtable2: { 
+      title: `Какие работы выполняют наши специалисты`, 
+      elements: [
+        {
+          title: `Внедрение или аудит действующей СУОТ на вашем предприятии`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Разработку, актуализацию и ведение нормативной документации`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Оценку условий труда и профессиональных рисков`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Подготовку и согласование предложений по снижению рисков на РМ`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Анализ выполнения запланированных мероприятий ОТ и ТБ`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Консультирование руководства по требованиям законодательства`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Обучение и проверку знаний персонала, в т. ч. по оказанию первой помощи`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Проведение инструктажей по охране труда и правилам ТБ`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Планирование и проведение производственного контроля`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Информирование работников о рисках и способах их снижения`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Решение вопросов по организации медицинского осмотра и обеспечению СИЗ`,
+          imageUrl: `right-arrow.png`,
+        },
+        {
+          title: `Формирование документов статистической отчетности и взаимодействие с контролирующими органами`,
           imageUrl: `right-arrow.png`,
         },
       ], 
@@ -120,7 +175,7 @@ const UslugiPage = ({ direction }) => {
           </div>
         </div>
         <div className='page-content'>
-          <section className='uchebni-welcome'>
+          <section className='uslugi-welcome uchebni-welcome'>
             <p>{direction.subtext}</p>
             {direction.subtable1 && (
               <div className='uslugi-table'>
@@ -128,6 +183,22 @@ const UslugiPage = ({ direction }) => {
                 <div className='uslugi-table-elements'>
                   {direction.subtable1.elements.map((element) => (
                     <div className='uslug-table-element'>
+                      <img src={require('../assets/uslugi/' + element.imageUrl)} alt='pic'></img>
+                      <h5>{element.title}</h5>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <p>{direction.subtext1}</p>
+          </section>
+          <section className='uslugi-main uchebni-welcome'>
+            {direction.subtable2 && (
+              <div className='uslugi-list uslugi-table'>
+                <h3>{direction.subtable2.title}</h3>
+                <div className='uslugi-list-elements uslugi-table-elements'>
+                  {direction.subtable2.elements.map((element) => (
+                    <div className='uslug-list-element uslug-table-element'>
                       <img src={require('../assets/uslugi/' + element.imageUrl)} alt='pic'></img>
                       <h5>{element.title}</h5>
                     </div>
