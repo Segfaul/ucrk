@@ -134,16 +134,15 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
           {
             items: [
               { text: "Учебный центр", link: "/uchebni-center" },
+              { text: "Вступление в СРО", link: "/uslugi/vstuplenie-v-sro" },
               { text: "Аутсорсинг по охране труда", link: "/uslugi/autsorsing-po-ohrane-truda" },
-              { text: "Повышение квалификации", link: "/uslugi/povyshenie-kvalifikaczii" },
             ]
           },
           {
             items: [
-              { text: "Лицензирование", link: "/uslugi/liczenzirovanie" },
+              { text: "Соут", link: "/uslugi/sout" },
               { text: "Сертификация", link: "/uslugi/sertifikacziya" },
-              { text: "Вступление в СРО", link: "/uslugi/vstuplenie-v-sro" },
-              { text: "Соут", link: "/uslugi/sout" }
+              { text: "Лицензирование", link: "/uslugi/liczenzirovanie" },
             ]
           }
         ]}

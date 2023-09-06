@@ -810,6 +810,11 @@ footer{
   display: flex;
   flex-wrap: wrap;
   gap: 20px 20px;
+  justify-content: center;
+}
+
+.uchebni-welcome-options-title {
+  margin: 0;
 }
 
 .uchebni-welcome-option {
@@ -902,12 +907,12 @@ footer{
   height: 80vh;
   display: flex;
   justify-content: center;
-  position: relative; /* Добавляем это для позиционирования псевдоэлемента */
+  position: relative;
 }
 
 .uchebni-direction-header::before {
   content: "";
-  background-color: rgba(128, 128, 128, 0.5); /* Серый цвет с прозрачностью */
+  background-color: rgba(128, 128, 128, 0.5);
   position: absolute;
   top: 0;
   left: 0;
@@ -1279,6 +1284,5 @@ tbody tr:nth-child(odd) {
 }
 
 .uslug-list-element {
-  flex: 0 1 calc(50% - 50px);
+  flex: 0 1 calc(50% - 3vw);
 }
-
