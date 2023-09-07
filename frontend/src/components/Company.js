@@ -6,18 +6,12 @@ const SliderPartner = ({ className = '' }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const partners = [
-    { imageSrc: 'home/factory.png', alt: 'Партнер 1' },
-    { imageSrc: 'home/factory.png', alt: 'Партнер 2' },
-    { imageSrc: 'home/factory.png', alt: 'Партнер 3' },
-    { imageSrc: 'home/factory.png', alt: 'Партнер 4' },
-    { imageSrc: 'home/globe.png', alt: 'Партнер 1' },
-    { imageSrc: 'home/hand-shake.png', alt: 'Партнер 2' },
-    { imageSrc: 'home/lamp.png', alt: 'Партнер 3' },
-    { imageSrc: 'home/factory.png', alt: 'Партнер 4' },
-    { imageSrc: 'home/roundabout.png', alt: 'Партнер 1' },
-    { imageSrc: 'home/roundabout.png', alt: 'Партнер 2' },
-    { imageSrc: 'home/roundabout.png', alt: 'Партнер 3' },
-    { imageSrc: 'home/roundabout.png', alt: 'Партнер 4' },
+    { imageSrc: 'about/lucoil.png', alt: 'Партнер 1' },
+    { imageSrc: 'about/tehnomash.jpg', alt: 'Партнер 2' },
+    { imageSrc: 'about/rosatom.png', alt: 'Партнер 3' },
+    { imageSrc: 'about/almaz.jpg', alt: 'Партнер 4' },
+    { imageSrc: 'about/lucoil.png', alt: 'Партнер 1' },
+    { imageSrc: 'about/tehnomash.jpg', alt: 'Партнер 2' },
   ];
 
   const itemsPerPage = 4;
@@ -26,7 +20,7 @@ const SliderPartner = ({ className = '' }) => {
   const handlePageIndicatorClick = (index) => {
     setCurrentPage(index);
   };
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
@@ -35,21 +29,18 @@ const SliderPartner = ({ className = '' }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const renderPartnersOnPage = () => {
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return partners.slice(startIndex, endIndex).map((partner, index) => (
-      <div className="partner" key={index}>
-        <img src={require('../assets/' + partner.imageSrc)} alt={partner.alt} />
-      </div>
-    ));
-  };
+  // Вычислите сдвиг для слайдера
+  const sliderTransform = `translateX(-${currentPage * (52.5)}%)`;
 
   return (
     <div className={`partners-slider ${className}`}>
       <div className="sliderz-container">
-        <div className="slider">
-          {renderPartnersOnPage()}
+        <div className={`slider animate`} style={{ transform: sliderTransform }}>
+          {partners.map((partner, index) => (
+            <div className="partner" key={index}>
+              <img src={require('../assets/' + partner.imageSrc)} alt={partner.alt} />
+            </div>
+          ))}
         </div>
       </div>
       <div className="slider-pagination">
@@ -94,7 +85,7 @@ const Company = () => {
 
     return (
         <div className='about'>
-          <div className='uchebni-header uchebni-direction-header' style={{ backgroundImage: `url(${require('../assets/about/logo.webp')})`}}>
+          <div className='uchebni-header uchebni-direction-header' style={{ backgroundImage: `url(${require('../assets/uchebni_center/logo.webp')})`}}>
             <div className='uchebni-header-content uchebni-direction-header-content'>
               <h2>Учебный Центр нового поколения</h2>
             </div>
@@ -121,6 +112,7 @@ const Company = () => {
               </p>
             </section>
           </div>
+          <h3 className='slider-logo'>Наши партнеры 2022-2023</h3>
           <SliderPartner />
         </div>
     );
