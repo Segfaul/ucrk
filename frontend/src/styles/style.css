@@ -503,7 +503,7 @@ footer{
 /* page content styles */
 
 .page-content {
-  margin: 0% 5%;
+  padding: 0% 5%;
 }
 
 .page-content section:first-child {
@@ -791,7 +791,7 @@ footer{
   display: flex;
   flex-direction: column;
   align-items: first baseline;
-  margin: 0 15vw;
+  padding: 0 15vw;
 }
 
 .uchebni-welcome p,
@@ -1346,9 +1346,27 @@ tbody tr:nth-child(odd) {
   filter: invert(1);
 }
 
-.split-pic-content {
+.split-pic-text {
+  display: flex;
   width: 50%;
+  flex-direction: column;
+}
+
+.split-pic-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: first baseline;
+  margin: 3vh 0vw 0vh 16vw;
+}
+
+.split-pic-content-header {
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline !important;
+  border-bottom: 1px solid black;
+  padding-bottom: 2.5vh;
+}
+
+.split-pic-links {
+  border: none !important;
 }
