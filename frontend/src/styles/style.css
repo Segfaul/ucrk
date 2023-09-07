@@ -1286,3 +1286,69 @@ tbody tr:nth-child(odd) {
 .uslug-list-element {
   flex: 0 1 calc(50% - 3vw);
 }
+
+
+/* about page styles */
+
+.about .uchebni-direction-header::before {
+  backdrop-filter: blur(5px);
+}
+
+.about .uchebni-direction-header-content h2 {
+  max-width: 60vw;
+  color: rgb(247, 185, 15);
+}
+
+.about .uchebni-header-content {
+  margin: 18.5vh 30vw 15vh 0vw !important;
+}
+
+.split-pic {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  background-color: rgb(234, 235, 234);
+  justify-content: space-between;
+}
+
+.split-pic-img {
+  background-size: 100% 100%;
+  cursor: default;
+  background-position: center;
+  height: 50vh;
+  width: 50%;
+  position: relative;
+  display: inline-block;
+  transition: all 0.8s ease;
+
+}
+
+.split-pic-img::before {
+  content: "";
+  background: linear-gradient(rgba(24, 24, 24, 0.4), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.split-pic-img:hover {
+  background-size: 110% 110%;
+  transition: all 0.8s ease;
+}
+
+.split-pic-img i {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  filter: invert(1);
+}
+
+.split-pic-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
