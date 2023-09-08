@@ -28,41 +28,53 @@ const ContactForm = ({ className }) => {
         <div className='contact-form-logo'>
             <img src={require(`../assets/logo-ucrk.png`)} alt='pic' />
         </div>
-        <form className='contact-form-data' onSubmit={handleSubmit}>
-            <div className='contact-form-data-element'>
-                <label htmlFor="name">Имя:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
+        <form className='contact-form-data' onSubmit={handleSubmit} autocomplete="off">
+            <h3>Поможем подобрать программу</h3>
+            <div className='contact-form-data-user'>
+                <div className='contact-form-data-element'>
+                    <label htmlFor="name">Ваше Имя:</label>
+                    <div className='contact-form-data-element-input'>
+                        <i className='fas fa-user-alt'></i>
+                        <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder='Иванов Иван'
+                        />
+                    </div>
+                </div>
+                <div className='contact-form-data-element'>
+                    <label htmlFor="phone">Ваш Телефон:</label>
+                    <div className='contact-form-data-element-input'>
+                        <i className='fa fa-phone'></i>
+                        <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        placeholder='+7(_ _ _)_ _ _-_ _- _ _'
+                        />
+                    </div>
+                </div>
             </div>
-            <div className='contact-form-data-element'>
-                <label htmlFor="phone">Телефон:</label>
-                <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className='contact-form-data-element'>
+            <div className='contact-form-data-service'>
+                <button type="submit">Отправить заявку →</button>
                 <label>
                     <input
                     type="checkbox"
                     name="consent"
                     checked={formData.consent}
                     onChange={handleChange}
+                    required
                     />
                     Согласие на обработку персональных данных
                 </label>
             </div>
-            <button type="submit">Отправить</button>
         </form>
       </div>
     );  

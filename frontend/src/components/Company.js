@@ -10,8 +10,6 @@ const SliderPartner = ({ className = '' }) => {
     { imageSrc: 'about/tehnomash.jpg', alt: 'Партнер 2' },
     { imageSrc: 'about/rosatom.png', alt: 'Партнер 3' },
     { imageSrc: 'about/almaz.jpg', alt: 'Партнер 4' },
-    { imageSrc: 'about/lucoil.png', alt: 'Партнер 1' },
-    { imageSrc: 'about/tehnomash.jpg', alt: 'Партнер 2' },
   ];
 
   const itemsPerPage = 4;
@@ -30,7 +28,7 @@ const SliderPartner = ({ className = '' }) => {
   }, []);
 
   // Вычислите сдвиг для слайдера
-  const sliderTransform = `translateX(-${currentPage * (52.5)}%)`;
+  const sliderTransform = `translateX(-${currentPage * (78.75)}%)`;
 
   return (
     <div className={`partners-slider ${className}`}>
@@ -62,16 +60,35 @@ const SplitPic = ({className=''}) => {
             <div className='split-pic-text'>
               <div className='split-pic-content'>
                 <div className='split-pic-content-header'>
-                    <h3>Наши контакты</h3>
-                    <p>111524 Москва, ул. Электродная 4Б, офис 302</p>
+                    <h3>Наша цель</h3>
+                    <p>Мы стремимся развивать лидеров и инноваторов через
+                    качественное образование, формируя будущее, насыщенное
+                    знаниями и возможностями
+                    </p>
                   </div>
                   <div className='split-pic-links contact-info-description-data'>
-                        <div><a href="tel:+ 8 (495) 220-22-20"><i class="fas fa-phone"></i><p>+ 8 (495) 220-22-20</p></a></div>
-                        <div><a href="mailto:info@uc-rk.ru"><i class="fas fa-envelope"></i><p>info@uc-rk.ru</p></a></div>
+                      <div className='split-pic-link'>
+                        <Link to="/uchebni-center">Основные сведения</Link>
+                      </div>
+                      <div className='split-pic-link'>
+                        <Link to="/uchebni-center">Структура и органы управления организации</Link>
+                      </div>
+                      <div className='split-pic-link'>
+                        <Link to="/uchebni-center">Документы</Link>
+                      </div>
+                      <div className='split-pic-link'>
+                        <Link to="/uchebni-center">Руководство. Педагогический (научно-педагогический) состав</Link>
+                      </div>
+                      <div className='split-pic-link'>
+                        <Link to="/uchebni-center">Образование</Link>
+                      </div>
+                      <div className='split-pic-link'>
+                        <Link to="/uchebni-center">Карьера в УЦРК</Link>
+                      </div>
                   </div>
               </div>
             </div>
-            <div className='split-pic-img' style={{ backgroundImage: `url(${require('../assets/about/test_tower.jpg')})`}}>
+            <div className='split-pic-img' style={{ backgroundImage: `url(${require('../assets/about/yauza.webp')})`}}>
                 <i className='fas fa-share'></i>
             </div>
         </div>
@@ -85,19 +102,24 @@ const Company = () => {
 
     return (
         <div className='about'>
-          <div className='uchebni-header uchebni-direction-header' style={{ backgroundImage: `url(${require('../assets/uchebni_center/logo.webp')})`}}>
+          <div className='uchebni-header uchebni-direction-header' style={{ backgroundImage: `url(${require('../assets/about/logo.png')})`}}>
             <div className='uchebni-header-content uchebni-direction-header-content'>
-              <h2>Учебный Центр нового поколения</h2>
+              <h2>Учебный Центр <br />нового поколения</h2>
             </div>
           </div>
           <div className='page-content'>
             <section className='uchebni-welcome'>
-              <h3>ООО "УЦРК"</h3>
+              <h2>Учебный центр развития квалификации</h2>
+              <h3>О нас</h3>
               <p>
-                Учебный центр развития квалификации предоставляет услуги в области дополнительного профессионального образования(послевузовское образование).
-                <br />
-                Учебные занятия проводят высококвалифицированные преподаватели. Занятия могут быть организованы несколькими способами.
-                <br />
+              Наш путь в области образования начался в 2022 году, и с тех пор мы стремимся к тому, чтобы стать не просто учебным центром,
+              а источником вдохновения и развития для наших клиентов.
+
+              <br /><br />
+              За первый год "УЦРК" объединил более 25 высококвалифицированных преподавателей, специалистов по охране с многолетним
+              опытом работы, ответственных руководителей и других, не менее важных, членов нашей команды.
+              Мы усердно работаем, чтобы предоставить самые актуальные и профессиональные услуги в области дополнительного
+              профессионального образования.
               </p>
             </section>
           </div>
@@ -105,10 +127,18 @@ const Company = () => {
           <div className='page-content'>
             <section className='uchebni-welcome'>
               <p>
-                Учебный центр развития квалификации предоставляет услуги в области дополнительного профессионального образования(послевузовское образование).
-                <br />
-                Учебные занятия проводят высококвалифицированные преподаватели. Занятия могут быть организованы несколькими способами.
-                <br />
+              Наш учебный центр обучает требованиям охраны труда, правилам выполнения работ на высоте, правилам оказания
+              первой помощи, экологии, промышленной безопасности, электробезопасности, энергетической безопасности, ГО и ЧС,
+              также предлагает индивидуальные курсы, которые могут быть специально разработаны для ваших уникальных
+              потребностей.
+              <br/><br/>
+              Дистанционно и стенах “УЦРК” происходит повышение квалификации специалистов, задействованных во всех отраслях
+              промышленности, в том числе и на особо опасных объектах. В нашем центре проводится обучение более, чем по 100
+              программам профессионального обучения по рабочим профессиям.
+
+              Учебный центр развития квалификации – надежный партнер для Вашего бизнеса. Мы сотрудничаем с крупными
+              компаниями, как «Лукойл», АО «ЦНИТИ «Техномаш», АО “Концерн ВКО «Алмаз-Антей» и готовы предложить
+              индивидуальный подход к каждому клиенту, учитывая особенности его деятельности.
               </p>
             </section>
           </div>
