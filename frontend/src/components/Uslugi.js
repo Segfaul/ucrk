@@ -128,16 +128,18 @@ const Cards = ({cards, className=''}) => {
 
 const Points = ({points, className=''}) => {
   return (
-    <ul className={`uchebni-welcome-options ${className}`}>
+    <div className={`points ${className}`}>
       <h3 className='uchebni-welcome-options-title'>{points.title}</h3>
       <h5 className='uchebni-welcome-options-description'>{points.description}</h5>
-      { points.elements.map((point) => (
-          <li className='uchebni-welcome-option'>
-            <img src={require('../assets/' + point.imageUrl)} alt="learning"/>
-            <span>{point.title}</span>
-          </li>
-      ))}
-    </ul>
+      <ul className={`uchebni-welcome-options`}>
+        { points.elements.map((point) => (
+            <li className='uchebni-welcome-option'>
+              <img src={require('../assets/' + point.imageUrl)} alt="learning"/>
+              <span>{point.title}</span>
+            </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
