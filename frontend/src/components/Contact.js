@@ -1,4 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+const ContactForm = ({ className }) => {
+    const [formData, setFormData] = useState({
+      name: '',
+      phone: '',
+      consent: false,
+    });
+  
+    const handleChange = (e) => {
+      const { name, value, type, checked } = e.target;
+      const newValue = type === 'checkbox' ? checked : value;
+      
+      setFormData({
+        ...formData,
+        [name]: newValue,
+      });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Здесь вы можете выполнить отправку данных на сервер или другие необходимые действия
+      console.log(formData);
+    };
+  
+    return (
+      <div className={`contact-form ${className}`}>
+        <div className='contact-form-logo'>
+            <img src={require(`../assets/logo-ucrk.png`)} alt='pic' />
+        </div>
+        <form className='contact-form-data' onSubmit={handleSubmit}>
+            <div className='contact-form-data-element'>
+                <label htmlFor="name">Имя:</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className='contact-form-data-element'>
+                <label htmlFor="phone">Телефон:</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className='contact-form-data-element'>
+                <label>
+                    <input
+                    type="checkbox"
+                    name="consent"
+                    checked={formData.consent}
+                    onChange={handleChange}
+                    />
+                    Согласие на обработку персональных данных
+                </label>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+      </div>
+    );  
+  };
 
 const Contact = () => {
     useEffect(() => {
@@ -24,6 +92,7 @@ const Contact = () => {
                     </iframe>
                 </div>
             </section>
+            <ContactForm />
         </div>
     );
 };
