@@ -66,7 +66,7 @@ const SplitPic = ({className=''}) => {
                     знаниями и возможностями
                     </p>
                   </div>
-                  <div className='split-pic-links contact-info-description-data'>
+                  <div className='split-pic-links'>
                       <div className='split-pic-link'>
                         <Link to="/uchebni-center">Основные сведения</Link>
                       </div>

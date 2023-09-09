@@ -1505,6 +1505,8 @@ tbody tr:nth-child(odd) {
 }
 
 .split-pic {
+  cursor: default;
+  animation: fadeIn 1.5s ease;
   margin: 5vh 0;
   display: flex;
   align-items: flex-start;
@@ -1515,6 +1517,7 @@ tbody tr:nth-child(odd) {
 }
 
 .split-pic-img {
+  animation: slideInFromRight 2.25s ease-in-out;
   background-size: 100% 100%;
   cursor: default;
   background-position: center;
@@ -1563,6 +1566,8 @@ tbody tr:nth-child(odd) {
 }
 
 .split-pic-link a {
+  color: #000;
+  text-decoration: none;
   padding-bottom: 4px;
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -1572,6 +1577,7 @@ tbody tr:nth-child(odd) {
 }
 
 .split-pic-content {
+  animation: slideInFromLeft 2.25s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: first baseline;
@@ -1610,6 +1616,8 @@ tbody tr:nth-child(odd) {
 }
 
 .sliderz-container {
+  cursor: default;
+  animation: fadeIn 1.5s ease-in-out;
   overflow: hidden;
 }
 
@@ -1663,6 +1671,7 @@ tbody tr:nth-child(odd) {
 }
 
 .slider-logo {
+  animation: fadeIn 0.7s ease-in-out;
   text-align: center;
   font-size: 3rem;
   font-weight: 800;
