@@ -9,7 +9,27 @@ const ContactForm = ({ className }) => {
   
     const handleChange = (e) => {
       const { name, value, type, checked } = e.target;
-      const newValue = type === 'checkbox' ? checked : value;
+      let newValue = type === 'checkbox' ? checked : value;
+
+      if (name === 'phone') {
+        const phoneNumber = newValue.replace(/\D/g, '');
+  
+        const phoneNumberLength = phoneNumber.length;
+        
+        if (phoneNumberLength <= 4) {
+          if (e.nativeEvent.inputType === 'deleteContentBackward') {
+            newValue = ''
+          } else {
+            newValue = `+7(${phoneNumber.slice(1, 4)}`;
+          } 
+        } else if (phoneNumberLength <= 7) {
+          newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4)}`;
+        } else if (phoneNumberLength <= 9) {
+          newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7)}`;
+        } else if (phoneNumberLength <= 11) {
+          newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}-${phoneNumber.slice(9, 11)}`;
+        }
+      }
       
       setFormData({
         ...formData,
@@ -19,7 +39,6 @@ const ContactForm = ({ className }) => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      // Здесь вы можете выполнить отправку данных на сервер или другие необходимые действия
       console.log(formData);
     };
   
@@ -41,6 +60,7 @@ const ContactForm = ({ className }) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        maxlength="100"
                         required
                         placeholder='Иванов Иван'
                         />
@@ -54,6 +74,7 @@ const ContactForm = ({ className }) => {
                         type="tel"
                         id="phone"
                         name="phone"
+                        maxlength="17"
                         value={formData.phone}
                         onChange={handleChange}
                         required
@@ -78,7 +99,7 @@ const ContactForm = ({ className }) => {
         </form>
       </div>
     );  
-  };
+};
 
 const Contact = () => {
     useEffect(() => {
@@ -86,25 +107,65 @@ const Contact = () => {
     }, []);
 
     return (
-        <div className='page-content'>
-            <section className='contact-info'>
-                <div className='contact-info-description'>
-                    <h2>Офис</h2>
-                    <p>111524 Москва, ул. Электродная 4Б, офис 302</p>
-                    <div className='contact-info-description-data'>
-                        <div><a href="tel:+ 8 (495) 220-22-20"><i class="fas fa-phone"></i><p>+ 8 (495) 220-22-20</p></a></div>
-                        <div><a href="mailto:info@uc-rk.ru"><i class="fas fa-envelope"></i><p>info@uc-rk.ru</p></a></div>
+        <div className='contact'>
+            <div className='uchebni-header uchebni-direction-header'>
+                <div className='uchebni-header-content uchebni-direction-header-content'>
+                </div>
+            </div>
+            <div className='page-content'>
+                <section className='uchebni-welcome'>
+                    <h3>Контакты</h3>
+                </section>
+                <section className='contact-info'>
+                    <div className='contact-info-description'>
+                        <div className='contact-info-description-content'>
+                            <p>
+                                <b>Свяжитесь с нами</b> любым удобным способом.
+                                Мы будем рады новым идеям и ответим на ваши вопросы:
+                            </p>
+                            <div className='contact-info-description-data'>
+                                <div className='contact-info-description-data-element'>
+                                    <div>
+                                        <h3>Офис</h3>
+                                        <p>ул. Радио д.24 к. 1 лфтс 602</p>
+                                    </div>
+                                    <div>
+                                        <h3>Почта</h3>
+                                        <p>info@uc-rk.ru</p>
+                                    </div>
+                                </div>
+                                <div className='contact-info-description-data-element'>
+                                    <div>
+                                        <h3>Телефон/факс</h3>
+                                        <span>
+                                            <p>Отдел продаж <br /></p>
+                                            <a className='contact-info-link' href="tel:+ 8 (495) 220-22-20">
+                                                8 (495) 220-22-20
+                                            </a>
+                                        </span>
+                                        <span>
+                                            <p>Методический отдел <br /></p>
+                                            <a className='contact-info-link' href="tel:+ 8 (495) 220-22-20">
+                                                8 (495) 220-22-20
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='contact-info-map' style={{ position: "relative", overflow: "hidden"}}>
-                    <a href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps" 
-                    style={{ color: '#eee', fontSize: '12px', position: 'absolute', top: '0px' }}>Москва</a>
-                    <a href="https://yandex.ru/maps/213/moscow/house/elektrodnaya_ulitsa_4b/Z04YcQJgTEAOQFtvfXt0dXprYA==/?ll=37.750559%2C55.754684&utm_medium=mapframe&utm_source=maps&z=17.73" style={{ color: '#eee', fontSize: '12px', position: 'absolute', top: '14px' }}>Электродная улица, 4Б — Яндекс Карты</a>
-                    <iframe src="https://yandex.ru/map-widget/v1/?ll=37.750559%2C55.754684&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjcxNDUzORJC0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINCt0LvQtdC60YLRgNC-0LTQvdCw0Y8g0YPQu9C40YbQsCwgNNCRIgoNkwAXQhXMBF9C&z=17.73" width="760" height="400" frameborder="1" allowfullscreen="true" style={{position: "relative"}}>
-                    </iframe>
-                </div>
-            </section>
-            <ContactForm />
+                    <div className='contact-info-map'>
+                        <div style={{ position: "relative", overflow: "hidden"}}>
+                            <a href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps" 
+                            style={{ color: '#eee', fontSize: '12px', position: 'absolute', top: '0px' }}>Москва</a>
+                            <a href="https://yandex.ru/maps/213/moscow/house/elektrodnaya_ulitsa_4b/Z04YcQJgTEAOQFtvfXt0dXprYA==/?ll=37.750559%2C55.754684&utm_medium=mapframe&utm_source=maps&z=17.73" style={{ color: '#eee', fontSize: '12px', position: 'absolute', top: '14px' }}>Электродная улица, 4Б — Яндекс Карты</a>
+                            <iframe src="https://yandex.ru/map-widget/v1/?ll=37.750559%2C55.754684&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjcxNDUzORJC0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINCt0LvQtdC60YLRgNC-0LTQvdCw0Y8g0YPQu9C40YbQsCwgNNCRIgoNkwAXQhXMBF9C&z=17.73" width="760" height="400" frameborder="1" allowfullscreen="true" style={{position: "relative"}}>
+                            </iframe>
+                        </div>
+                    </div>
+                </section>
+                <ContactForm />
+            </div>
         </div>
     );
 };
