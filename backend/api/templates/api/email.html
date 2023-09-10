@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Учебный Центр Развития Квалификации</h1>
+        <table>
+            <tr>
+                <th>Поле</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Телефон:</td>
+                <td>{{ email_request.phone_number }}</td>
+            </tr>
+            <tr>
+                <td>Почта:</td>
+                <td>{{ email_request.email }}</td>
+            </tr>
+            <tr>
+                <td>Направление:</td>
+                <td>{{ email_request.direction }}</td>
+            </tr>
+            <tr>
+                <td>Ссылка на товар:</td>
+                <td><a href="{{ email_request.product_link }}">{{ email_request.product_link }}</a></td>
+            </tr>
+            <tr>
+                <td>Имя покупателя:</td>
+                <td>{{ email_request.buyer_name }}</td>
+            </tr>
+            <tr>
+                <td>Комментарий:</td>
+                <td>{{ email_request.comment }}</td>
+            </tr>
+        </table>
+        <p>Хорошего рабочего дня :)</p>
+    </div>
+</body>
+</html>

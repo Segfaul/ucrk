@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import client from './config/client';
 
 const directionsData = [
   { path: 'ohrana-truda', title: 'Охрана труда', 
@@ -1526,26 +1528,122 @@ const truncateWithEllipsis = (text, maxLength) => {
   return text.substring(0, maxLength) + '...';
 };
 
+const DirectionRequest = ({ className='' }) => {
+  const [showRequest, setShowRequest] = useState(false);
+}
+
 const DirectionPage = ({ direction }) => {
 
   useEffect(() => {
     document.title = `${direction.title} | Учебный центр | УЦРК`;
+
+    const id = window.location.hash.substring(1);
+
+    if (id && id <= direction.subdirections.length) {
+      openPopup(direction.subdirections[id]);
+    }
+
   }, []);
   
   const [showPopup, setShowPopup] = useState(false);
   const [selectedDirection, setSelectedDirection] = useState(null);
 
+  const [showRequest, setShowRequest] = useState(false);
+  const reqRef = useRef(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+    consent: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    let newValue = type === 'checkbox' ? checked : value;
+
+    if (name === 'phone') {
+      const phoneNumber = newValue.replace(/\D/g, '');
+
+      const phoneNumberLength = phoneNumber.length;
+      
+      if (phoneNumberLength <= 4) {
+        if (newValue.length === 2 && e.nativeEvent.inputType === 'deleteContentBackward') {
+          newValue = '';
+        } else {
+          newValue = `+7(${phoneNumber.slice(1, 4)}`;
+        } 
+      } else if (phoneNumberLength <= 7) {
+        newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4)}`;
+      } else if (phoneNumberLength <= 9) {
+        newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7)}`;
+      } else if (phoneNumberLength <= 11) {
+        newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}-${phoneNumber.slice(9, 11)}`;
+      }
+    }
+    
+    setFormData({
+      ...formData,
+      [name]: newValue,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const direction_id = window.location.hash.substring(1);
+      const direction_title = direction_id && direction.subdirections[direction_id].title;
+
+      const response = await client.post('/api/email/', {
+        product_link: window.location.href,
+        direction: direction_title,
+        email: formData.email,
+        phone_number: formData.phone,
+        buyer_name: formData.name,
+        comment: formData.message,
+      });
+
+      toast.success(`Заявка успешно отправлена`);
+
+      setShowRequest(false);
+
+    } catch (err) {
+        if (err.response) {
+
+          const responseData = JSON.parse(err.response.request.response);
+
+          const response = Object.values(responseData)[0]
+
+          toast.error(`${response}`);
+        }
+    }
+  };
+
   const popupRef = useRef(null);
 
-  const openPopup = (direction) => {
+  const openPopup = (direction, index) => {
     setSelectedDirection(direction);
     setShowPopup(true);
+    
+    if (!window.location.hash || window.location.hash !== index) {
+      window.location.hash = index;
+    }
   };
 
   const closePopup = () => {
     if (showPopup) {
       setSelectedDirection(null);
       setShowPopup(false);
+      if (window.location.hash) {
+        window.history.replaceState('', document.title, window.location.pathname + window.location.search);
+      }
+    }
+  };
+
+  const handleRequest = (event) => {
+    if (showRequest && !reqRef.current.contains(event.target)) {
+      setShowRequest(false);
     }
   };
 
@@ -1565,10 +1663,10 @@ const DirectionPage = ({ direction }) => {
       </div>
       <div className='page-content'>
         <section className="uchebni-direction-cards">
-          {direction.subdirections.map((subdirection) => (
+          {direction.subdirections.map((subdirection, index) => (
             <div
               className="uchebni-direction-card"
-              onClick={() => openPopup(subdirection)}
+              onClick={() => openPopup(subdirection, index)}
             >
               <img src={require('../assets/uchebni_center/' + subdirection.imageUrl)} alt='pic' />
               <h3>{truncateWithEllipsis(subdirection.title, 30)}</h3>
@@ -1580,12 +1678,13 @@ const DirectionPage = ({ direction }) => {
           {showPopup && (
             <div className="uchebni-direction-card-popup" onClick={handleDocumentClick}>
               <div className="uchebni-direction-card-popup-content" ref={popupRef}>
+                <div class="close-icon"><i class="fas fa-times" onClick={() => {closePopup();}}></i></div>
                 <div className='uchebni-direction-card-popup-content-header'>
                   <img className='uchebni-direction-card-popup-content-header-pic' src={require('../assets/uchebni_center/' + selectedDirection.imageUrl)} alt='pic' />
                   <div className='uchebni-direction-card-popup-content-header-description'>
                     <h3>{selectedDirection.subtitle}</h3>
                     <h4>{selectedDirection.price}</h4>
-                    <a href='https://api.whatsapp.com/send?phone=79154309295' className="transparent-button">Пройти обучение</a>
+                    <span className="transparent-button" onClick={() => setShowRequest(true)}>Пройти обучение</span>
                     <div className='uchebni-direction-card-popup-content-header-params'>
                       <div>
                         <img src={require('../assets/uchebni_center/time.png')} alt='pic' />
@@ -1623,6 +1722,95 @@ const DirectionPage = ({ direction }) => {
                     </h5>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {showRequest && (
+            <div className="email-request-popup" onClick={handleRequest}>
+              <div className="email-request-popup-content" ref={reqRef}>
+                <div class="close-icon"><i class="fas fa-times" onClick={() => {setShowRequest(false);}}></i></div>
+                <div className='email-request-popup-content-pic'>
+                  <img src={require(`../assets/ucrk_woman.webp`)} alt='pic' />
+                </div>
+                <form className='contact-form-data' onSubmit={handleSubmit} autocomplete="off">
+                  <h3>Оставить заявку</h3>
+                  <div className='contact-form-data-user'>
+                      <div className='contact-form-data-element'>
+                          <label htmlFor="name">Ваше Имя: <span className='required-star'>*</span></label>
+                          <div className='contact-form-data-element-input'>
+                              <i className='fas fa-user-alt'></i>
+                              <input
+                              type="text"
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              maxlength="100"
+                              required
+                              placeholder='Иванов Иван'
+                              />
+                          </div>
+                      </div>
+                      <div className='contact-form-data-element'>
+                          <label htmlFor="phone">Ваш Телефон: <span className='required-star'>*</span></label>
+                          <div className='contact-form-data-element-input'>
+                              <i className='fa fa-phone'></i>
+                              <input
+                              type="tel"
+                              id="phone"
+                              name="phone"
+                              maxlength="17"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              required
+                              placeholder='+7(_ _ _)_ _ _-_ _- _ _'
+                              />
+                          </div>
+                      </div>
+                  </div>
+                  <div className='contact-form-data-element'>
+                    <label htmlFor="email">E-mail: </label>
+                    <div className='contact-form-data-element-input'>
+                      <i className='fa fa-envelope'></i>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder='example@example.com'
+                      />
+                    </div>
+                  </div>
+                  <div className='contact-form-data-element contact-form-data-element-textarea'>
+                    <label htmlFor="phone">Сообщение: <span className='required-star'>*</span></label>
+                    <div className='contact-form-data-element-input'>
+                      <i className='fa fa-comment'></i>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder='Введите ваше сообщение...'
+                      />
+                    </div>
+                  </div>
+                  <div className='contact-form-data-service'>
+                      <button type="submit">Отправить заявку →</button>
+                      <label>
+                          <input
+                          type="checkbox"
+                          name="consent"
+                          checked={formData.consent}
+                          onChange={handleChange}
+                          required
+                          />
+                          Согласие на обработку персональных данных
+                      </label>
+                  </div>
+              </form>
               </div>
             </div>
           )}

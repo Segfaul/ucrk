@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -7,10 +7,18 @@ import Contact from './components/Contact'
 import UchebniCenter, { DirectionPage, directionsData } from './components/Uchebni_center'
 import Uslugi, { UslugiPage, UslugiData } from './components/Uslugi';
 import Company from './components/Company';
+import icon from './assets/cropped-fav-ucrk-32x32.png';
 import PageNotFound from './components/Error/PageNotFound';
 import ScrollToTop from './components/config/Scroll';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
+
+  useEffect(() => {
+    const favicon = document.getElementById('favicon');
+    favicon.setAttribute('href', icon);
+  }, []);
 
   return (
     <Router>
@@ -49,6 +57,7 @@ const App = () => {
           </Routes>
         </main>
         <Footer />
+        <ToastContainer className="toast-position" position="top-right" autoClose={1500} />
     </Router>
   );
 };

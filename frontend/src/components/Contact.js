@@ -17,8 +17,8 @@ const ContactForm = ({ className }) => {
         const phoneNumberLength = phoneNumber.length;
         
         if (phoneNumberLength <= 4) {
-          if (e.nativeEvent.inputType === 'deleteContentBackward') {
-            newValue = ''
+          if (newValue.length === 2 && e.nativeEvent.inputType === 'deleteContentBackward') {
+            newValue = '';
           } else {
             newValue = `+7(${phoneNumber.slice(1, 4)}`;
           } 
@@ -39,7 +39,6 @@ const ContactForm = ({ className }) => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(formData);
     };
   
     return (
