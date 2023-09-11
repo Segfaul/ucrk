@@ -157,49 +157,73 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
   );
 };
 
-const Submenu = ({ items }) => (
-  <ul className="submenu">
-    {items.map((item, index) => (
-      <li key={index}>{item}</li>
-    ))}
-  </ul>
-);
+/* --- */
 
-const BurgerMenu = () => {
+function BurgerSubMenu({ subPoints }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null);
 
-  const toggleMenu = (menu) => {
+  const toggleSubMenu = () => {
     setIsOpen(!isOpen);
-    setActiveMenu(menu === activeMenu ? null : menu);
   };
 
   return (
-    <div className={`burger-menu ${isOpen ? 'open' : ''}`}>
-      <div className="menu-toggle" onClick={() => toggleMenu(null)}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
-      </div>
-      <div className="menu-items">
-        <div className={`menu-item ${activeMenu === 'Учебный центр' ? 'active' : ''}`} onClick={() => toggleMenu('Учебный центр')}>
-          Учебный центр
-          {activeMenu === 'Учебный центр' && <Submenu items={['Охрана труда']} />}
-        </div>
-        <div className={`menu-item ${activeMenu === 'Услуги' ? 'active' : ''}`} onClick={() => toggleMenu('Услуги')}>
-          Услуги
-          {activeMenu === 'Услуги' && <Submenu items={['Пункт 1', 'Пункт 2']} />}
-        </div>
-        <div className="menu-item">Контакты</div>
-        <div className="menu-item">О компании</div>
-        <div className="menu-item">Медиа центр</div>
-        <div className="menu-item">Карьера</div>
-      </div>
+    <div className="burger-sub-menu">
+      <button onClick={toggleSubMenu}>
+        {isOpen ? '-' : '+'}
+      </button>
+      {isOpen && (
+        <ul>
+          {subPoints.map((subPoint, index) => (
+            <li key={index}>{subPoint}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
-};
+}
+
+function BurgerMenuItem({ label, subPoints }) {
+
+  return (
+    <div className='burger-menu-item'>
+      {label}
+      {subPoints.length > 0 && <BurgerSubMenu subPoints={subPoints} />}
+    </div>
+  );
+}
+
+function BurgerMenu({ menuItems }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className={`burger-menu ${isOpen ? 'active' : ''}`}>
+      <button onClick={toggleMenu}>Burger Menu</button>
+      {isOpen && (
+        <ul className="burger-menu-list">
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              <BurgerMenuItem
+                label={item.label}
+                subPoints={item.subPoints}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 const Header = () => {
+  const BurgermenuItems = [
+    { label: 'Item 1', subPoints: [] },
+    { label: 'Item 2', subPoints: ['Sub 1', 'Sub 2'] },
+    { label: 'Item 3', subPoints: [] },
+  ];
 
   const menuItems = [
     { to: '/about', label: 'О компании' },
@@ -282,7 +306,7 @@ const Header = () => {
             Перейти в СДО
         </Link>
       </div>
-      <BurgerMenu />
+      <BurgerMenu menuItems={BurgermenuItems}/>
     </header>
   );
 };

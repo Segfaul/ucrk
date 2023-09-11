@@ -1,92 +1,39 @@
 
+.burger-menu {
+  display: none;
+}
 
-@media screen and (max-width: 1024px) {
+
+@media screen and (max-width: 1132px) {
   .main-menu {
     display: none;
   }
   .media {
     display: none;
   }
+
   .burger-menu {
-    width: 300px;
-    height: 100%;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    left: -300px;
-    transition: left 0.3s ease;
+    display: inline;
+  }
+
+  .burger-menu.active header {
+    background-color: black !important;
+  }
+
+  .burger-menu-list {
+    margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    z-index: 1000;
-  }
-  
-  .burger-menu.open {
-    left: 0;
-  }
-  
-  .menu-toggle {
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .bar {
-    width: 30px;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px 0;
-    transition: all 0.3s ease;
-  }
-  
-  .menu-items {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .menu-item {
-    padding: 10px;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    position: absolute;
+    top: 100%;
+    box-sizing: border-box;
+    left: 0;
     width: 100%;
-    position: relative;
-  }
-  
-  .menu-item.active {
-    background-color: #444;
-  }
-  
-  .submenu {
-    margin-left: 20px;
+    height: 100vh;
     list-style: none;
-    padding-left: 0;
-    display: none;
-  }
-  
-  .menu-item.active .submenu {
-    display: block;
-  }
-  
-  .submenu li {
-    padding: 5px;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  /* Hover effect for menu items */
-  .menu-item:hover {
-    background-color: #444;
-  }
-  
-  /* Transition for menu items */
-  .menu-item:hover .submenu {
-    display: block;
+    background-color: #0000006b;
+    /* animation: slideInFromLeft 0.3s ease-in-out; */
   }
   
 }
