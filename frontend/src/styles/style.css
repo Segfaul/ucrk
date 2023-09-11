@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: 'Euclid Circular A', 'Montserrat', sans-serif;
-  background: linear-gradient(180deg, #F0EFEF, #DFE6FF, #FFFFFF, #FFE7E7, #F7F7F7);
+  background: linear-gradient(120deg, #F0EFEF, #DFE6FF, #FFFFFF, #FFE7E7, #F7F7F7);
   /* background-attachment: fixed; */
   background-size: cover;
 }
