@@ -159,7 +159,24 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
 
 /* --- */
 
-function BurgerSubMenu({ subPoints }) {
+function BurgerSubMenu({ subPoints, isOpen, toggleMenu }) {
+  return (
+    <div className={`burger-sub-menu ${isOpen ? 'active': ''}`}>
+      <ul>
+        {subPoints.map((subPoint, index) => (
+          <li key={index}>
+            <Link onClick={toggleMenu} to={subPoint.link}>
+              <span>{subPoint.text}</span>
+              {subPoint.icon && <img src={require(`../assets/` + subPoint.icon)} alt='pic' />}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function BurgerMenuItem({ item, toggleMenu }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSubMenu = () => {
@@ -167,62 +184,101 @@ function BurgerSubMenu({ subPoints }) {
   };
 
   return (
-    <div className="burger-sub-menu">
-      <button onClick={toggleSubMenu}>
-        {isOpen ? '-' : '+'}
-      </button>
-      {isOpen && (
-        <ul>
-          {subPoints.map((subPoint, index) => (
-            <li key={index}>{subPoint}</li>
-          ))}
-        </ul>
+    <div className='burger-menu-item'>
+      <div className={`burger-menu-item-header ${isOpen ? 'active': ''}`}>
+        <h3><Link to={item.to} onClick={toggleMenu}>{item.label}</Link></h3>
+        {item.subPoints && (<i className={`fa fa-angle-up`} onClick={() => setIsOpen(!isOpen)} />)}
+      </div>
+      {item.subPoints && (
+        <BurgerSubMenu subPoints={item.subPoints} isOpen={isOpen} toggleMenu={toggleMenu} />
       )}
     </div>
   );
 }
 
-function BurgerMenuItem({ label, subPoints }) {
 
-  return (
-    <div className='burger-menu-item'>
-      {label}
-      {subPoints.length > 0 && <BurgerSubMenu subPoints={subPoints} />}
-    </div>
-  );
-}
-
-function BurgerMenu({ menuItems }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+function BurgerMenu({ menuItems, toggleMenu, isOpen }) {
 
   return (
     <div className={`burger-menu ${isOpen ? 'active' : ''}`}>
-      <button onClick={toggleMenu}>Burger Menu</button>
-      {isOpen && (
+      <button onClick={toggleMenu}>{isOpen ? '✕' : '☰'}</button>
+      <div className='burger-menu-content'>
         <ul className="burger-menu-list">
           {menuItems.map((item, index) => (
             <li key={index}>
               <BurgerMenuItem
-                label={item.label}
-                subPoints={item.subPoints}
+                item={item}
+                toggleMenu={toggleMenu}
               />
             </li>
           ))}
         </ul>
-      )}
+        <div className='burger-menu-contact'>
+          <h4>Наши контакты</h4>
+          <div className='burger-menu-contact-element'>
+            <p>info@uc-rk.ru</p>
+            <a href="tel:+ 8 (495) 220-22-20">
+                8 (495) 220-22-20
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 const Header = () => {
   const BurgermenuItems = [
-    { label: 'Item 1', subPoints: [] },
-    { label: 'Item 2', subPoints: ['Sub 1', 'Sub 2'] },
-    { label: 'Item 3', subPoints: [] },
+    { 
+      label: 'О компании', to: '/about', 
+      subPoints: [
+        { text: "Структура и органы управления организации", link: "#" },
+        { text: "Документ", link: "#" },
+        { text: "Образование", link: "#" },
+        { text: "Образовательные стандарты", link: "#" },
+        { text: "Руководство", link: "#" },
+        { text: "Платные образовательные услуги", link: "#" }
+      ] 
+    },
+    { 
+      label: 'Учебный центр', to: '/uchebni-center', 
+      subPoints: [
+        { text: "Охрана труда", link: "/uchebni-center/ohrana-truda", icon: "uchebni_center/ohrana-truda.png"},
+        { text: "Пожарная безопасность", link: "/uchebni-center/pozharnaya-bezopasnost", icon: "uchebni_center/pozharnaya-bezopasnost.png" },
+        { text: "Промышленная безопасность", link: "/uchebni-center/promyshlennaya-bezopasnost", icon: "uchebni_center/promyshlennaya-bezopasnost.png" },
+        { text: "Профессиональная переподготовка", link: "/uchebni-center/professionalnaya-perepodgotovka", icon: "uchebni_center/professionalnaya-perepodgotovka.png" },
+        { text: "ПТЭТЭ и эксплуатация тепловых энергоустановок", link: "/uchebni-center/ptete-i-ekspluatacziya-teplovyh-energo", icon: "uchebni_center/ptete-i-ekspluatacziya-teplovyh-energo.png" },
+        { text: "Работы на высоте", link: "/uchebni-center/raboty-na-vysote", icon: "uchebni_center/raboty-na-vysote.png" },
+        { text: "Рабочие профессии", link: "/uchebni-center/rabochie-professii", icon: "uchebni_center/rabochie-professii.png" },
+        { text: "Электробезопасность", link: "/uchebni-center/elektrobezopasnost", icon: "uchebni_center/elektrobezopasnost.png" },
+        { text: "Земляные работы", link: "/uchebni-center/zemlyanye-raboty", icon: "uchebni_center/zemlyanye-raboty.png" },
+        { text: "Гражданская оборона", link: "/uchebni-center/grazhdanskaya-oborona", icon: "uchebni_center/grazhdanskaya-oborona.png" },
+        { text: "Оказание первой помощи", link: "/uchebni-center/okazanie-pervoj-pomoshhi", icon: "uchebni_center/okazanie-pervoj-pomoshhi.png" },
+        { text: "Производственный контроль", link: "/uchebni-center/proizvodstvennyj-kontrol", icon: "uchebni_center/proizvodstvennyj-kontrol.png" },
+        { text: "Радиационная безопасность", link: "/uchebni-center/radiaczionnaya-bezopasnost", icon: "uchebni_center/radiaczionnaya-bezopasnost.png" },
+        { text: "Повышение квалификации в строительстве", link: "/uchebni-center/povyshenie-kvalifikaczii-v-stroitelstve", icon: "uchebni_center/povyshenie-kvalifikaczii-v-stroitelstve.png" },
+        { text: "Повышение квалификации в проектировании", link: "/uchebni-center/povyshenie-kvalifikaczii-v-proektirovanii", icon: "uchebni_center/povyshenie-kvalifikaczii-v-proektirovanii.png" }
+      ] 
+    },
+    { label: 'Услуги', to: '/uslugi', 
+      subPoints: [
+        { text: "Учебный центр", link: "/uchebni-center" },
+        { text: "Вступление в СРО", link: "/uslugi/vstuplenie-v-sro" },
+        { text: "Аутсорсинг по охране труда", link: "/uslugi/autsorsing-po-ohrane-truda" },
+        { text: "Соут", link: "/uslugi/sout" },
+        { text: "Сертификация", link: "/uslugi/sertifikacziya" },
+        { text: "Лицензирование", link: "/uslugi/liczenzirovanie" },
+      ] 
+    },
+    {
+      label: 'Контакты', to: '/contacts',
+    },
+    {
+      label: 'Карьера', to: '/career',
+    },
+    {
+      label: 'Медиа', to: '/media',
+    },
   ];
 
   const menuItems = [
@@ -237,6 +293,22 @@ const Header = () => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
   const [additionalBlockVisible, setAdditionalBlockVisible] = useState(false);
   const [isHeaderActive, setIsHeaderActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    const header = document.querySelector('header').classList;
+    const body = document.body;
+
+    if (isOpen) {
+      body.style.overflow = 'auto';
+      header.remove('burger');
+    } else {
+      body.style.overflow = 'hidden';
+      header.add('burger');
+    }
+
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -279,7 +351,7 @@ const Header = () => {
 
   return (
     <header className={`header ${isHeaderActive ? 'active' : ''}`}>
-      <div className="logo">
+      <div className="logo" onClick={() => setIsOpen(false)}>
         <Link to="/">
           <img className='logo-pic' src={require('../assets/logo-ucrk.png')} alt="UCRK Logo" />
         </Link>
@@ -306,7 +378,7 @@ const Header = () => {
             Перейти в СДО
         </Link>
       </div>
-      <BurgerMenu menuItems={BurgermenuItems}/>
+      <BurgerMenu menuItems={BurgermenuItems} toggleMenu={toggleMenu} isOpen={isOpen}/>
     </header>
   );
 };

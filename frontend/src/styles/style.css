@@ -79,6 +79,7 @@ body {
 .header {
   display: flex;
   position: absolute;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   width: 100%;
@@ -177,15 +178,15 @@ main {
 
 .sdo-link {
   text-decoration: none;
-  background-color: rgb(238, 184, 5); /* Желтый фон */
-  color: #333; /* Темно-серый цвет текста */
+  background-color: rgb(238, 184, 5);
+  color: #333;
   padding: 10px 20px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .sdo-link:hover {
-  background-color: rgb(223, 171, 3); /* Цвет при наведении */
+  background-color: rgb(223, 171, 3);
 }
 
 .submenu {
