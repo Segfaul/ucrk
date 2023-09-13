@@ -17,6 +17,9 @@
     padding: 2vw 4vw;
   }
 
+
+  /* Burger menu page styles */
+
   .header.burger {
     background-color: rgba(0, 0, 0, 0.973);
   }
@@ -163,5 +166,94 @@
     text-decoration: underline;
     color: #fff;
   }
+
+
+  /* Home page styles */
+
+  .slider-content {
+    bottom: 52vh;
+    left: 50vw;
+    width: 90vw;
+  }
+
+  .slider-content a {
+    border-radius: 0 40px 0 30px;
+  }
+
+  .section-title {
+    font-size: 0.7rem;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .home-description {
+    font-size: 1.3rem;
+    padding: 5% 5%;
+  }
+
+  .home-commitment {
+    flex-direction: column;
+  }
+
+  .home-commitment-description {
+    max-width: 200vw;
+  }
+
+  .home-commitment-table {
+    padding: 0;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .home-commitment-table-element {
+    max-width: 100%;
+    flex-basis: none;
+    padding: 0 4vw;
+  }
+
+  .home-commitment-table-element-content {
+    max-width: 100%;
+  }
+
+  .home-media {
+    flex-direction: column;
+    padding: 0 5vw;
+  }
+
+  .home-media-topics ul li img {
+    height: 7rem;
+    width: 10rem;
+  }
+
+  .home-media-topics ul li:first-child img {
+    height: 18rem;
+    width: 22rem;
+  }
+
+  .home-media-recent {
+    width: 100%;
+  }
+
+  .home-media-recent-element {
+    width: 100%
+  }
+
+  .home-media-recent-element-footer {
+    width: 100%;
+    justify-content: space-between;
+  }
   
+  .home-media-recent-element-footer-date {
+    margin-left: 2.5vw;
+  }
+
+  /* footer page styles */
+
+  .footer-contact-info-element {
+    font-size: 0.9rem;
+  }
+
 }
