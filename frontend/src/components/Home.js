@@ -12,6 +12,7 @@ const Home = () => {
       imageUrl: 'daniel-mccullough-HtBlQdxfG9k-unsplash.jpg',
       title: 'Учебный центр развития квалификации',
       subtitle: 'Традиционное профессиональное образование. Новый подход к обучению.',
+      slider_title: 'Профессиональное образование по новым правилам',
       link: 'https://api.whatsapp.com/send?phone=79154309295',
       link_title: 'получить консультацию'
     },
@@ -20,6 +21,7 @@ const Home = () => {
       imageUrl: 'uchebni-center-showoff.webp',
       title: 'Учебный центр развития квалификации',
       subtitle: 'Очные занятия, передовые технологии, современный подход к обучению!',
+      slider_title: 'Очное обучение на территории московского полигона',
       link: 'https://api.whatsapp.com/send?phone=79154309295',
       link_title: 'получить консультацию'
     },
@@ -28,6 +30,7 @@ const Home = () => {
       imageUrl: 'christopher-gower-m_HRfLhgABo-unsplash.jpg',
       title: 'Дистанционное обучение в УЦРК',
       subtitle: 'Удобное дистанцинное обучение на нашей платформе. Экономия времени, возможность обучаться из любой точки России',
+      slider_title: 'Дистанционное обучение на нашей СДО',
       link: '/uchebni-center',
       link_title: 'перейти в учебный центр'
     },
@@ -194,7 +197,7 @@ const Home = () => {
                   }}
                 />
                 <div key={slide.id} className={`section-title ${index === activeSlide ? 'active' : ''}`} onClick={() => setActiveSlide(index)}>
-                  {slide.title}
+                  {slide.slider_title ? slide.slider_title : slide.title}
                 </div>
               </div>
             ))}
@@ -209,11 +212,16 @@ const Home = () => {
         </section>
         <section className='home-commitment'>
           <div className='home-commitment-title'>
-            <h3>Наши обязательства</h3>
+            <h3>Популярные направления обучения:</h3>
             <div className='home-commitment-description'>
-              Учебный центр повышения квалификации 
-              готов предоставить высокое качество образования, 
-              современный подход и приветливый персонал.
+              Учебный центр УЦРК предоставляет
+              обучение как в <b>дистанционном</b> формате с
+              внедрением перодовых технологий и
+              методов обучения
+              <br /><br />
+              Так и <b>очно</b>, в оборудованных учебных
+              классах, на территории учебного цента или
+              с выездом в Вашу организацию
             </div>
           </div>
           <ul className='home-commitment-table'>

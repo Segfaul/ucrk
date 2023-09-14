@@ -126,7 +126,7 @@ const Contact = () => {
                                 <div className='contact-info-description-data-element'>
                                     <div>
                                         <h3>Офис</h3>
-                                        <p>ул. Радио д.24 к. 1 лфтс 602</p>
+                                        <p>ул. Радио д.24 к. 1 офис 602</p>
                                     </div>
                                     <div>
                                         <h3>Почта</h3>
