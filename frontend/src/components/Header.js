@@ -373,6 +373,7 @@ const Header = () => {
         </nav>
         <AdditionalBlock activeMenuItem={activeMenuItem} additionalBlockVisible={additionalBlockVisible} />
       </div>
+      <a href='tel:+ 8 (495) 220-22-20' className='main-menu-phone-number'>+ 8 (495) 220-22-20</a>
       <div class="media">
         <Link to="/" className='sdo-link'>
             Перейти в СДО

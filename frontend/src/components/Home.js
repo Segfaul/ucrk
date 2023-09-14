@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   useEffect(() => {
@@ -9,73 +10,77 @@ const Home = () => {
     {
       id: 1,
       imageUrl: 'daniel-mccullough-HtBlQdxfG9k-unsplash.jpg',
-      title: 'Анонсирована годовая отчетность',
-      link: 'ссылка1',
-      link_title: 'перейти'
+      title: 'Учебный центр развития квалификации',
+      subtitle: 'Традиционное профессиональное образование. Новый подход к обучению.',
+      link: 'https://api.whatsapp.com/send?phone=79154309295',
+      link_title: 'получить консультацию'
     },
     {
       id: 2,
-      imageUrl: 'umit-yildirim-9OB46apMbC4-unsplash.jpg',
-      title: 'Мы готовы к переходу',
-      link: 'ссылка2',
-      link_title: 'подробнее'
+      imageUrl: 'uchebni-center-showoff.webp',
+      title: 'Учебный центр развития квалификации',
+      subtitle: 'Очные занятия, передовые технологии, современный подход к обучению!',
+      link: 'https://api.whatsapp.com/send?phone=79154309295',
+      link_title: 'получить консультацию'
     },
     {
       id: 3,
       imageUrl: 'christopher-gower-m_HRfLhgABo-unsplash.jpg',
-      title: 'Наше СДО открыло новые направления',
-      link: 'ссылка3',
-      link_title: 'перейти'
+      title: 'Дистанционное обучение в УЦРК',
+      subtitle: 'Удобное дистанцинное обучение на нашей платформе. Экономия времени, возможность обучаться из любой точки России',
+      link: '/uchebni-center',
+      link_title: 'перейти в учебный центр'
     },
 
     {
       id: 4,
       imageUrl: 'israel-andrade-YI_9SivVt_s-unsplash.jpg',
       title: 'Офис в центре Москвы',
-      link: 'ссылка3',
+      subtitle: 'Удобное расположение для вашего обучения: наш офис в самом центре Москвы',
+      link: '/contacts',
       link_title: 'контакты'
     },
   ];
 
   const commitmentData = [
     {
-      imageUrl: 'lamp.png',
-      title: 'Улучшаем сервисы',
+      imageUrl: 'ohrana-truda.png',
+      title: 'Охрана труда',
       description: 'перейти',
-      link: 'ссылка1'
+      link: '/uchebni-center/ohrana-truda'
     },
     {
-      imageUrl: 'roundabout.png',
-      title: 'Повышаем эффективность',
-      description: 'описание',
+      imageUrl: 'pozharnaya-bezopasnost.png',
+      title: 'Пожарная безопасность',
+      description: 'перейти',
       link: 'ссылка2'
     },
     {
-      imageUrl: 'factory.png',
-      title: 'Наше СДО открыло новые направления',
-      description: 'описание',
-      link: 'ссылка3'
+      imageUrl: 'ptete-i-ekspluatacziya-teplovyh-energo.png',
+      title: 'Промышленная безопасность',
+      description: 'перейти',
+      link: '/uchebni-center/pozharnaya-bezopasnost'
     },
 
     {
-      imageUrl: 'globe.png',
-      title: 'Устойчивое развитие',
-      description: 'описание',
-      link: 'ссылка3'
+      imageUrl: 'rabochie-professii.png',
+      title: 'Рабочие специальности',
+      description: 'перейти',
+      link: '/uchebni-center/zemlyanye-raboty'
     },
 
     {
-      imageUrl: 'hand-shake.png',
-      title: 'Офис в центре Москвы',
-      description: 'описание',
-      link: 'ссылка3'
+      imageUrl: 'elektrobezopasnost.png',
+      title: 'Электробезопасность',
+      description: 'перейти',
+      link: '/uchebni-center/elektrobezopasnost'
     },
 
     {
-      imageUrl: 'vacancy.png',
-      title: 'Предлагаем работу',
-      description: 'описание',
-      link: 'ссылка3'
+      imageUrl: 'raboty-na-vysote.png',
+      title: 'Работы на высоте',
+      description: 'перейти',
+      link: '/uchebni-center/raboty-na-vysote'
     },
   ];
 
@@ -170,7 +175,8 @@ const Home = () => {
           >
             <div className="slider-content">
               <h2>{slide.title}</h2>
-              <a href={slide.link}>{slide.link_title}</a>
+              <p>{slide.subtitle}</p>
+              <Link to={slide.link}>{slide.link_title}</Link>
             </div>
           </div>
         ))}

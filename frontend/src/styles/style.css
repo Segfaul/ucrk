@@ -146,6 +146,11 @@ main {
   color: #f3f3f3;
 }
 
+.main-menu-phone-number {
+  text-decoration: underline;
+  color: #fff;
+}
+
 .additional-block {
   position: absolute;
   top: 100%;
@@ -405,6 +410,10 @@ footer{
   margin-bottom: 10px;
 }
 
+.slider-content p {
+  font-size: 1.1rem;
+}
+
 .slider-content a {
   display: inline-block;
   padding: 10px 20px;
@@ -456,8 +465,9 @@ footer{
 
 .progress-bar-fill {
   height: 100%;
-  background-color: #1d82f5;
+  background-color: #7431e1;
   transition: width 0.5s;
+  border-radius: 3px;
   color: #333;
 }
 
@@ -533,10 +543,11 @@ footer{
   justify-content: center;
   padding: 5% 15%;
   cursor: default;
-  color: #fff;
+  color: #ffffff;
   font-size: 1.8rem;
   text-align: center;
-  background-color: #2369bd;
+  background-color: #7431e1;
+  /* #7d04a1  #2369bd */
 }
 
 .home-commitment {
