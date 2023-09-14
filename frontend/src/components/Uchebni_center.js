@@ -1625,6 +1625,7 @@ const DirectionPage = ({ direction }) => {
   const openPopup = (direction, index) => {
     setSelectedDirection(direction);
     setShowPopup(true);
+    document.body.style.overflow = 'hidden';
     
     if (!window.location.hash || window.location.hash !== index) {
       window.location.hash = index;
@@ -1635,6 +1636,7 @@ const DirectionPage = ({ direction }) => {
     if (showPopup) {
       setSelectedDirection(null);
       setShowPopup(false);
+      document.body.style.overflow = 'auto';
       if (window.location.hash) {
         window.history.replaceState('', document.title, window.location.pathname + window.location.search);
       }

@@ -256,4 +256,196 @@
     font-size: 0.9rem;
   }
 
+
+  /* uchebni page styles */
+
+  .uchebni-direction-header {
+    height: 30rem;
+  }
+
+  .uchebni-direction-header-content h2 {
+    font-size: 2rem;
+    max-width: 100rem;
+  }
+
+  .uchebni-welcome {
+    padding: 0 1rem;
+  }
+
+  .uchebni-welcome-options {
+    gap: 1rem 2rem;
+    padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .uchebni-welcome-option span {
+    font-size: 0.6rem;
+  }
+  
+  .uchebni-welcome-option {
+    width: 6rem;
+  }
+
+  .uchebni-programs {
+    margin: 0 1rem;
+  }
+
+  .uchebni-program-list {
+    padding: 0 .5rem;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 1rem .3rem;
+  }
+
+  .uchebni-program a {
+    width: 4.5rem;
+    height: 12rem;
+  }
+
+  .uchebni-program a img {
+    height: 2.5rem;
+    width: 3rem;
+  }
+
+  .uchebni-program a h4 {
+    font-size: 0.6rem;
+  }
+
+  .more-button {
+    padding: .4rem .6rem;
+  }
+
+  .uchebni-direction-header-content {
+    justify-content: initial;
+    flex-direction: column;
+    margin: 0 !important;
+    padding: 4.5rem 0 0 2rem;
+  }
+
+  .uchebni-direction-header-content p {
+    max-width: 60rem;
+    margin: 2rem 0 0 0;
+    font-size: 1.2rem;
+  }
+
+  .uchebni-header-content {
+    padding: 7.5rem 8.8rem 0 1rem !important;
+  }
+
+  .uslugi .uchebni-header-content {
+    margin: 0 !important;
+  }
+
+  .uchebni-direction-cards {
+    margin: 0;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: 1rem .5rem;
+  }
+
+  .uchebni-direction-card {
+    width: 8.5rem;
+    height: 18rem;
+  }
+
+  .uchebni-direction-card img {
+    height: 5rem;
+    border-radius: 5px;
+    width: 8rem;
+  }
+
+  .uchebni-direction-card h3 {
+    font-size: 1rem;
+    max-width: 20rem;
+  }
+
+  .uchebni-direction-card-popup {
+    align-items: normal;
+  }
+
+  .uchebni-direction-card-popup-content {
+    width: 85%;
+    margin: .8rem 0;
+    overflow: auto;
+  }
+
+  .uchebni-direction-card-popup-content-header {
+    flex-direction: column;
+  }
+
+  .uchebni-direction-card-popup-content-header-pic {
+    height: 15rem;
+    width: 21rem;
+  }
+
+  .uchebni-direction-card-popup-content-header-params div {
+    max-width: 20rem;
+    margin-right: 2rem;
+  }
+
+  .uchebni-direction-card-popup-content-header-params div h5 {
+    max-width: 20rem;
+    min-width: 2rem;
+  }
+
+  .uchebni-direction-card-popup-content-description-points ul {
+    gap: 1rem .5rem;
+  }
+
+  .uchebni-direction-card-popup-content-description-points ul li {
+    width: 100%;
+  }
+
+
+  /* contact page styles */
+
+  .contact-info {
+    flex-direction: column;
+  }
+
+  .contact-info-description {
+    width: 100%;
+  }
+
+  .contact-info-description-content {
+    width: 80%;
+  }
+
+  .contact-info-description-data {
+    gap: 0 8rem;
+  }
+
+  .contact-info-description-data-element div {
+    width: 10rem;
+  }
+
+  .contact-info-map {
+    display: none;
+  }
+
+  .contact-form {
+    flex-direction: column;
+    width: 65%;
+    margin: 2vh 5vw;
+  }
+
+  .contact-form-logo img {
+    height: 4rem;
+  }
+
+  .contact-form-data h3 {
+    font-size: 1rem;
+  }
+
+  .contact-form-data-user {
+    flex-direction: column;
+    gap: .5rem 0;
+  }
+
+  .contact-form-data-service input[type="checkbox"] {
+    width: 3rem;
+    height: 1.4rem;
+  }
+
 }
