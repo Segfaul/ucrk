@@ -14,7 +14,7 @@
 
   .header {
     justify-content: space-between;
-    padding: 2vw 4vw;
+    padding: 2.5vh 4vw;
   }
 
 
@@ -171,13 +171,22 @@
   /* Home page styles */
 
   .slider-content {
-    bottom: 52vh;
+    bottom: 42vh;
     left: 50vw;
     width: 90vw;
   }
 
+  .slider-content h2 {
+    font-size: 2rem;
+  }
+
+  .slider-content p {
+    font-size: 1.1rem;
+  }
+
   .slider-content a {
     border-radius: 0 40px 0 30px;
+    font-size: 1.1rem;
   }
 
   .section-title {
@@ -375,8 +384,10 @@
   }
 
   .uchebni-direction-card-popup-content-header-pic {
-    height: 15rem;
-    width: 21rem;
+    /* height: 14rem;
+    width: 20rem; */
+    height: 20%;
+    width: 90%;
   }
 
   .uchebni-direction-card-popup-content-header-params div {
@@ -457,6 +468,7 @@
   .contact-form-data h3 {
     font-size: 1.5rem;
     margin-bottom: 3rem;
+    padding-top: 5rem;
   }
 
   .contact-form-data-user {

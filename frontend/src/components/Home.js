@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { RequestMail } from './Uchebni_center';
+
+
 const Home = () => {
   useEffect(() => {
     document.title = 'Главная страница | УЦРК';
@@ -13,7 +16,8 @@ const Home = () => {
       title: 'Учебный центр развития квалификации',
       subtitle: 'Традиционное профессиональное образование. Новый подход к обучению.',
       slider_title: 'Профессиональное образование по новым правилам',
-      link: 'https://api.whatsapp.com/send?phone=79154309295',
+      link: '',
+      onClick: () => setShowRequest(true),
       link_title: 'получить консультацию'
     },
     {
@@ -22,7 +26,8 @@ const Home = () => {
       title: 'Учебный центр развития квалификации',
       subtitle: 'Очные занятия, передовые технологии, современный подход к обучению!',
       slider_title: 'Очное обучение на территории московского полигона',
-      link: 'https://api.whatsapp.com/send?phone=79154309295',
+      link: '',
+      onClick: () => setShowRequest(true),
       link_title: 'получить консультацию'
     },
     {
@@ -143,6 +148,7 @@ const Home = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeCommit, setActiveCommit] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [showRequest, setShowRequest] = useState(false);
 
   const handleActiveCommit = (index) => {
     setActiveCommit(index);
@@ -179,7 +185,7 @@ const Home = () => {
             <div className="slider-content">
               <h2>{slide.title}</h2>
               <p>{slide.subtitle}</p>
-              <Link to={slide.link}>{slide.link_title}</Link>
+              <Link to={slide.link} onClick={slide.onClick}>{slide.link_title}</Link>
             </div>
           </div>
         ))}
@@ -204,6 +210,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <RequestMail showRequest={showRequest} setShowRequest={setShowRequest} />
       <div className='page-content'>
         <section className='home-description'>
           Мы обучаем требованием охраны труда, правилам выполнения работ на высоте, 

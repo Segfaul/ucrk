@@ -155,8 +155,8 @@ main {
   position: absolute;
   top: 100%;
   left: 0;
-  margin-left: calc(49.9% - 50vw);
-  width: 100vw;
+  width: 100%;
+  box-sizing: border-box;
   min-height: 40vh;
   background-color: #0000006b;
   color: #fff;
@@ -195,7 +195,7 @@ main {
 }
 
 .submenu {
-  margin: 2vh 10vw 2vh 18vw;
+  margin: 2vh 10vw 2vh 11vw;
   border-radius: 10px;
   padding: 0px 20px;
   display: flex;
@@ -397,21 +397,21 @@ footer{
 
 .slider-content {
   position: absolute;
-  bottom: 60vh;
-  left: 30vw;
-  width: 40vw;
+  bottom: 45vh;
+  left: 33vw;
+  width: 50vw;
   transform: translateX(-50%);
   color: rgb(255, 255, 255);
 }
 
 .slider-content h2 {
   cursor: default;
-  font-size: 2rem;
+  font-size: 4rem;
   margin-bottom: 10px;
 }
 
 .slider-content p {
-  font-size: 1.1rem;
+  font-size: 2rem;
 }
 
 .slider-content a {
@@ -420,7 +420,7 @@ footer{
   background-color: #f0b22c;
   color: rgb(0, 0, 0);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 2rem;
   text-decoration: none;
   border-radius: 5px;
   transition-duration: 0.3s;
@@ -1464,7 +1464,7 @@ footer{
 
 .close-icon i {
   color: rgb(197, 197, 197);
-  font-size: 20px;
+  font-size: 2rem;
 }
 
 

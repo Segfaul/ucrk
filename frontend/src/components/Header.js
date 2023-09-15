@@ -350,13 +350,13 @@ const Header = () => {
   };
 
   return (
-    <header className={`header ${isHeaderActive ? 'active' : ''}`}>
+    <header className={`header ${isHeaderActive ? 'active' : ''}`} onMouseLeave={handleMenuLeave}>
       <div className="logo" onClick={() => setIsOpen(false)}>
         <Link to="/">
           <img className='logo-pic' src={require('../assets/logo-ucrk.png')} alt="UCRK Logo" />
         </Link>
       </div>
-      <div className="main-menu" onMouseLeave={handleMenuLeave}>
+      <div className="main-menu">
         <nav>
           <ul>
             {menuItems.map(({to, label}) => (
@@ -371,8 +371,8 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-        <AdditionalBlock activeMenuItem={activeMenuItem} additionalBlockVisible={additionalBlockVisible} />
       </div>
+      <AdditionalBlock activeMenuItem={activeMenuItem} additionalBlockVisible={additionalBlockVisible} />
       <a href='tel:+ 8 (495) 220-22-20' className='main-menu-phone-number'>+ 8 (495) 220-22-20</a>
       <div class="media">
         <Link to="/" className='sdo-link'>

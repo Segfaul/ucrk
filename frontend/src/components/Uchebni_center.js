@@ -1532,6 +1532,175 @@ const DirectionRequest = ({ className='' }) => {
   const [showRequest, setShowRequest] = useState(false);
 }
 
+const RequestMail = ({showRequest, setShowRequest}) => {
+
+  // const [showRequest, setShowRequest] = useState(false);
+  const reqRef = useRef(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+    consent: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    let newValue = type === 'checkbox' ? checked : value;
+
+    if (name === 'phone') {
+      const phoneNumber = newValue.replace(/\D/g, '');
+
+      const phoneNumberLength = phoneNumber.length;
+      
+      if (phoneNumberLength <= 4) {
+        if (newValue.length === 2 && e.nativeEvent.inputType === 'deleteContentBackward') {
+          newValue = '';
+        } else {
+          newValue = `+7(${phoneNumber.slice(1, 4)}`;
+        } 
+      } else if (phoneNumberLength <= 7) {
+        newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4)}`;
+      } else if (phoneNumberLength <= 9) {
+        newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7)}`;
+      } else if (phoneNumberLength <= 11) {
+        newValue = `+7(${phoneNumber.slice(1, 4)})-${phoneNumber.slice(4, 7)}-${phoneNumber.slice(7, 9)}-${phoneNumber.slice(9, 11)}`;
+      }
+    }
+    
+    setFormData({
+      ...formData,
+      [name]: newValue,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const response = await client.post('/api/email/', {
+        email: formData.email,
+        phone_number: formData.phone,
+        buyer_name: formData.name,
+        comment: formData.message,
+      });
+
+      toast.success(`Заявка успешно отправлена`);
+
+      setShowRequest(false);
+
+    } catch (err) {
+        if (err.response) {
+
+          const responseData = JSON.parse(err.response.request.response);
+
+          const response = Object.values(responseData)[0]
+
+          toast.error(`${response}`);
+        }
+    }
+  };
+
+  const handleRequest = (event) => {
+    if (showRequest && !reqRef.current.contains(event.target)) {
+      setShowRequest(false);
+    }
+  };
+
+  return (
+    showRequest && (
+      <div className="email-request-popup" onClick={handleRequest}>
+        <div className="email-request-popup-content" ref={reqRef}>
+          <div class="close-icon"><i class="fas fa-times" onClick={() => {setShowRequest(false);}}></i></div>
+          <div className='email-request-popup-content-pic'>
+            <img src={require(`../assets/ucrk_woman.webp`)} alt='pic' />
+          </div>
+          <form className='contact-form-data' onSubmit={handleSubmit} autocomplete="off">
+            <h3>Оставить заявку</h3>
+            <div className='contact-form-data-user'>
+                <div className='contact-form-data-element'>
+                    <label htmlFor="name">Ваше Имя: <span className='required-star'>*</span></label>
+                    <div className='contact-form-data-element-input'>
+                        <i className='fas fa-user-alt'></i>
+                        <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        maxlength="100"
+                        required
+                        placeholder='Иванов Иван'
+                        />
+                    </div>
+                </div>
+                <div className='contact-form-data-element'>
+                    <label htmlFor="phone">Ваш Телефон: <span className='required-star'>*</span></label>
+                    <div className='contact-form-data-element-input'>
+                        <i className='fa fa-phone'></i>
+                        <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        maxlength="17"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        placeholder='+7(_ _ _)_ _ _-_ _- _ _'
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className='contact-form-data-element'>
+              <label htmlFor="email">E-mail: </label>
+              <div className='contact-form-data-element-input'>
+                <i className='fa fa-envelope'></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder='example@example.com'
+                />
+              </div>
+            </div>
+            <div className='contact-form-data-element contact-form-data-element-textarea'>
+              <label htmlFor="phone">Сообщение: <span className='required-star'>*</span></label>
+              <div className='contact-form-data-element-input'>
+                <i className='fa fa-comment'></i>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  placeholder='Введите ваше сообщение...'
+                />
+              </div>
+            </div>
+            <div className='contact-form-data-service'>
+                <button type="submit">Отправить заявку →</button>
+                <label>
+                    <input
+                    type="checkbox"
+                    name="consent"
+                    checked={formData.consent}
+                    onChange={handleChange}
+                    required
+                    />
+                    Согласие на обработку персональных данных
+                </label>
+            </div>
+        </form>
+        </div>
+      </div>
+    )
+  );
+
+}
+
 const DirectionPage = ({ direction }) => {
 
   useEffect(() => {
@@ -1887,3 +2056,4 @@ const UchebniCenter = () => {
 
 export default UchebniCenter;
 export { directionsData, DirectionPage };
+export { RequestMail };
