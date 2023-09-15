@@ -32,6 +32,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Django Tests
+        env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           python manage.py test
         working-directory: ./backend
