@@ -159,9 +159,9 @@ const AdditionalBlock = ({ activeMenuItem, additionalBlockVisible }) => {
 
 /* --- */
 
-function BurgerSubMenu({ subPoints, isOpen, toggleMenu }) {
+function BurgerSubMenu({ subPoints, toggleMenu }) {
   return (
-    <div className={`burger-sub-menu ${isOpen ? 'active': ''}`}>
+    <div className={`burger-sub-menu`}>
       <ul>
         {subPoints.map((subPoint, index) => (
           <li key={index}>
@@ -179,13 +179,9 @@ function BurgerSubMenu({ subPoints, isOpen, toggleMenu }) {
 function BurgerMenuItem({ item, toggleMenu }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleSubMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <div className='burger-menu-item'>
-      <div className={`burger-menu-item-header ${isOpen ? 'active': ''}`}>
+    <div className={`burger-menu-item ${isOpen ? 'active': ''}`}>
+      <div className={`burger-menu-item-header`}>
         <h3><Link to={item.to} onClick={toggleMenu}>{item.label}</Link></h3>
         {item.subPoints && (<i className={`fa fa-angle-up`} onClick={() => setIsOpen(!isOpen)} />)}
       </div>
@@ -295,6 +291,14 @@ const Header = () => {
   const [isHeaderActive, setIsHeaderActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeBurgerSub = () => {
+    const subMenus = document.querySelectorAll('.burger-menu-item.active');
+    
+    subMenus.forEach((subMenu) => {
+      subMenu.classList.remove('active');
+    });
+  };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
     const header = document.querySelector('header').classList;
@@ -306,6 +310,7 @@ const Header = () => {
     } else {
       body.style.overflow = 'hidden';
       header.add('burger');
+      closeBurgerSub();
     }
 
   };
@@ -375,7 +380,7 @@ const Header = () => {
       <AdditionalBlock activeMenuItem={activeMenuItem} additionalBlockVisible={additionalBlockVisible} />
       <a href='tel:+ 8 (495) 220-22-20' className='main-menu-phone-number'>+ 8 (495) 220-22-20</a>
       <div class="media">
-        <Link to="/" className='sdo-link'>
+        <Link to="https://uc-rk.cdoprof.com/" className='sdo-link'>
             Перейти в СДО
         </Link>
       </div>

@@ -61,13 +61,13 @@ const Home = () => {
       imageUrl: 'pozharnaya-bezopasnost.png',
       title: 'Пожарная безопасность',
       description: 'перейти',
-      link: 'ссылка2'
+      link: '/uchebni-center/pozharnaya-bezopasnost'
     },
     {
       imageUrl: 'ptete-i-ekspluatacziya-teplovyh-energo.png',
       title: 'Промышленная безопасность',
       description: 'перейти',
-      link: '/uchebni-center/pozharnaya-bezopasnost'
+      link: '/uchebni-center/promyshlennaya-bezopasnost'
     },
 
     {

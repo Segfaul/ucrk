@@ -1528,10 +1528,6 @@ const truncateWithEllipsis = (text, maxLength) => {
   return text.substring(0, maxLength) + '...';
 };
 
-const DirectionRequest = ({ className='' }) => {
-  const [showRequest, setShowRequest] = useState(false);
-}
-
 const RequestMail = ({showRequest, setShowRequest}) => {
 
   // const [showRequest, setShowRequest] = useState(false);
@@ -1543,6 +1539,18 @@ const RequestMail = ({showRequest, setShowRequest}) => {
     message: '',
     consent: false,
   });
+
+  useEffect(() => {
+    if (showRequest) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showRequest]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -1761,6 +1769,7 @@ const DirectionPage = ({ direction }) => {
     e.preventDefault();
 
     try {
+      console.log(client.arguments);
       const direction_id = window.location.hash.substring(1);
       const direction_title = direction_id && direction.subdirections[direction_id].title;
 

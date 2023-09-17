@@ -14,7 +14,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG', default=True)
 
-ALLOWED_HOSTS = [env('ALLOWED_HOSTS')] if env('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(', ') if env('ALLOWED_HOSTS') else []
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
