@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import client from './config/client';
 
 const ContactForm = ({ className }) => {
     const [formData, setFormData] = useState({
@@ -37,8 +39,29 @@ const ContactForm = ({ className }) => {
       });
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
+
+      try {
+
+        const response = await client.post('/api/email/', {
+          phone_number: formData.phone,
+          buyer_name: formData.name,
+        });
+  
+        toast.success(`Заявка успешно отправлена`);
+  
+      } catch (err) {
+          if (err.response) {
+  
+            const responseData = JSON.parse(err.response.request.response);
+  
+            const response = Object.values(responseData)[0]
+  
+            toast.error(`${response}`);
+          }
+      }
+
     };
   
     return (

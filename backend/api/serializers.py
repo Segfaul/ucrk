@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import EmailRequest
 
+from .models import EmailRequest
 from .validators import validate_email_request
 
 
@@ -12,3 +12,9 @@ class EmailRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailRequest
         fields = '__all__'
+
+
+# class SliderSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Slider
+#         fields = '__all__'

@@ -93,7 +93,7 @@
     transition: all 0.3s ease-in-out;
   } 
 
-  .burger-menu-item-header.active i {
+  .burger-menu-item.active .burger-menu-item-header i {
     transform: rotate(180deg);
     background-color: rgb(238, 184, 5);
     border-radius: 100px;
@@ -103,7 +103,7 @@
     padding-bottom: 0;
   }
 
-  .burger-sub-menu.active {
+  .burger-menu-item.active .burger-sub-menu {
     padding-bottom: 1rem;
   }
 
@@ -119,7 +119,7 @@
     transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out;
   }
   
-  .burger-sub-menu.active ul {
+  .burger-menu-item.active .burger-sub-menu ul {
     opacity: 1;
     height: auto;
   }
